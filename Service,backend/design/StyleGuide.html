@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>My Style Guide</title>
+
+    <!-- Site theme -->
+    <style>
+    @import url("https://use.fontawesome.com/releases/v5.0.7/css/all.css");
+    body {
+        font-family:  Verdana, "Gill Sans MT", Arial, Helvetica, "sans-serif";
+        color: black;
+        background-color: rgb(72, 138, 64);
+    }
+
+    h1 {
+        font-size: 36px;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    button {
+        background-color: rgb(82, 78, 38);
+        border-radius: 5px;
+        border: 3px solid black;
+        padding: 10px;
+        color: white;
+    }
+
+    form {
+        margin: 0 left;
+        width: 275px;
+        padding:1em;
+        border: 4px solid black;
+        border-radius: 10px;
+        background-color: rgb(179, 150, 92);
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+
+    textarea {
+        border:solid 2px black;
+        width: 95%;
+        box-align: center;
+        background-color: rgb(191, 234, 35);
+    }
+
+    select {
+        padding: 2px;
+        border: 2px solid black;
+        background-color: rgb(191, 234, 35);
+        font-weight: bold;
+    }
+
+
+    input.inputField {
+        padding: 5px;
+        border: 2px solid black;
+        background-color: rgb(191, 234, 35);
+
+    }
+
+    div.box1 {
+        height: 50px;
+        width: 700px;
+        display: inline-block;
+        margin: 0 10px 0 10px;
+    }
+
+    div.box2 {
+        height: 50px;
+        width: 50px;
+        display: inline-block;
+        margin: 0 10px 0 10px;
+    }
+
+    #primary1 {
+        background-color: rgb(72, 138, 64);
+    }
+
+    #primary2 {
+        background-color: rgb(191, 234, 35);
+    }
+
+    #primary3 {
+        background-color: rgb(179, 150, 92);
+    }
+
+    #primary4 {
+        background-color: rgb(82, 78, 38);
+    }
+
+    #secondary1 {
+        background-color: rgb(55, 28, 175);
+    }
+
+    #secondary2 {
+        background-color: rgb(255, 233, 27);
+    }
+
+
+    .warning {
+        background-color: yellow;
+        font-weight: bold;
+        color: black;
+        padding: 10px;
+        border-radius: 5px;
+        width: 50%
+    }
+
+    .danger {
+        background-color: red;
+        font-weight: bold;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        width: 50%
+    }
+
+    .success {
+        background-color: green;
+        font-weight: bold;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        width: 50%
+    }
+
+    svg.svg-inline--fa {
+        color: white;
+    }
+
+    .spacer {
+        margin-top: 25px;
+    }
+
+    #footer {
+        border-top: 1px solid #dddddd;
+        margin-top: 50px;
+        padding: 10px;
+        text-align: center
+    }
+
+    .navbar-static-top {
+        border: 3px solid black;
+        text-align: center;
+        width: 1050px;
+        font-size: 200%;
+        background-color: aqua
+    }
+
+    .col-md-3 {
+        font-size: 120%;
+        float: left
+    }
+    .col-md-9 {
+        margin-left: 15em
+    }
+    
+    </style>
+</head>
+
+<body>
+    <a name="Top"></a>
+    
+    
+        <div class="col-md-9">
+            <!-- About -->
+            <div>
+                <div class="page-header">
+                    <p>
+                        <h3>Ryan Hilton<br>
+                            SWDV 691<br>
+                            October 2018</h3>
+                    
+                    </p>
+                    <h1>
+                        Style Guide - Flexible Cookbook mobile app</h1>
+                </div>
+                <p>This page contains specific style guide information for my front end interface.</p>
+            </div>
+            <!-- End About -->
+
+            <!-- Fonts -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="fonts"></a>Font</h1>
+                </div>
+                
+                <p>My application utilizes the "Gill Sans MT", Arial, Helvetica, "sans-serif"
+                     font-family with black text, as shown on this webpage.</p>
+            </div>
+            <!-- End Fonts -->
+
+            <!-- Color Theme -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="colorTheme"></a>Color Theme</h1>
+                </div>
+                <p>My application will incorporate the following color scheme in its interface.
+                    <br>
+                    The primary color is rgb(72, 138, 64) which is shown as the background of this webpage.
+                    <br>
+                    The secondary, color is rgb(191, 234, 35), which is shown in the box below:
+                    <br>
+                </p>
+                <div class="box1" id="primary2" caption="primary2"></div>
+                <br>
+                <p>The following accent colors will be also be used, usually inside elements:
+                    <br>
+                </p> rgb(179, 150, 92):
+                <div class="box2" id="primary3" caption="primary3"></div>
+                <br><br><br> rgb(82, 78, 38):
+                <div class="box2" id="primary4" caption="primary4"></div>
+                <br>
+                <br><br>
+                
+            </div>
+            <!-- End Color Theme -->
+
+            <!-- Buttons -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="buttons"></a>Buttons</h1>
+                </div>
+                <p>The application will feature buttons that contain white text,
+                    <br>
+                    and appear as shown below:</p>
+                <button>My Button</button>
+            </div>
+            <!-- End Buttons -->
+
+            <!-- Form Elements -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="formElements"></a>Form Elements</h1>
+                </div>
+                <p>For the varous forms that the application will contain, it will contain input fields and labels with the below styling:</p>
+                <form>
+                    <label for="name" class="inputLabel">Name</label>
+                    <input type="input" id="name" class="inputField" value="">
+                </form>
+                <br>
+                <form padding="10">
+                    <label for="list" class="inputLabel">List of Choices</label>
+                    <select name="recipes">
+                        <option value="one">recipe1</option>
+                        <option value="two">recipe2</option>
+                        <option value="three">recipe3</option>
+                        <option value="four">recipe4</option>
+                    </select>
+                    <p>
+                        <input type="checkbox" name="cb1" value="true" checked>
+                        checkbox
+                    </p>
+                    
+                    <p>Text Area
+                        <textarea class="textarea" name="message" rows="10" cols="30" >Enter message here.
+                        </textarea>
+                    </p>
+                    <p>
+                        <button>Submit</button>
+                        <button>Clear Form</button>
+                    </p>
+                </form>
+            </div>
+            <!-- End Form Elements -->
+
+            <!-- User Messages -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="messages"></a>Contextual Site Messages</h1>
+                </div>
+                <p>For various completed tasks, application notifications will be presented to the user based.  The following contextual messages will be used.</p>
+                <p class="warning"><i class="fas fa-exclamation-triangle"></i> Warning!</p>
+                <p class="danger"><i class="fas fa-exclamation-circle"></i> Danger!</p>
+                <p class="success"><i class="fas fa-check"></i> Success!</p>
+            </div>
+            <!-- End User Messages -->
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">Copyright My Style Guide</p>
+        </div>
+    </div>
+</body>
+
+</html>
