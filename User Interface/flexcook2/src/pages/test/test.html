@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Test</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Test Recipe Page </h3>
+
+  <p>
+  </p>
+  <div *ngIf="recipe">
+      You navigated here by clicking <b>{{recipe.title}}</b>
+  </div>
+      
+</ion-content>
