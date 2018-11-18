@@ -1,6 +1,27 @@
 page-landing {
 
 
+    // #bkgrnd {
+    //     background-color: map-get($colors, 'primary');
+    // }
+
+    // .button {
+    //     background-color: map-get($colors, 'mytan');
+    //     border: 3px solid black;
+    //     color: black;
+    //     font-weight: bold;
+    //     margin-left: 32%;
+    //     margin-top: 1em;
+    // }
+
+    // #chooseRecipe {
+    //     background-color: map-get($colors, 'secondary');
+    //     font-weight: bold;
+    //     border: 3px solid;
+    //     border-color: map-get($colors, 'dbrown');
+    // }
+
+
     #bkgrnd {
         background-color: map-get($colors, 'primary');
     }
@@ -9,6 +30,7 @@ page-landing {
         background-color: map-get($colors, 'mybrown');
         border: 3px solid black;
         color: white;
+        font-weight: bold;
         margin-left: 32%;
         margin-top: 1em;
     }
@@ -16,8 +38,10 @@ page-landing {
     #chooseRecipe {
         background-color: map-get($colors, 'mytan');
         font-weight: bold;
+        // border: 2px solid;
+        border-color: map-get($colors, 'secondary');
     }
-
+    
     // .ion-list {
     //     font-weight: bold
     // }
