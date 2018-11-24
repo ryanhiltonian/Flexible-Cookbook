@@ -1,0 +1,84 @@
+
+
+# Create item
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Bread","quantity":"2"}' \
+  http://localhost:8080/api/recipes
+
+# Update item
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"name":"Bread","quantity":"4"}' \
+  http://localhost:8080/api/recipes/{id}  
+
+
+ # Delete item
+curl --header "Content-Type: application/json" \
+  --request DELETE \
+  http://localhost:8080/api/recipes/{id}   
+
+
+
+
+  # Update item
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"name":"Bananas","quantity":"50"}' \
+  http://localhost:8080/api/recipes/5bf85e2033f626234462d5d5
+
+
+   # Delete item
+curl --header "Content-Type: application/json" \
+  --request DELETE \
+  http://localhost:8080/api/recipes/5bf999956e2339045c8893e7
+
+
+  # Create item
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Butter","quantity":"7"}' \
+  http://localhost:8080/api/recipes
+
+  #attempt
+    # Get items
+curl --header "Content-Type: application/json" \
+  --request GET \
+  http://localhost:8080/api/recipes
+
+
+
+  # Create item
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{
+"name": "001",
+"instructions": "Mix flour and water together in a bowl . . .",
+"ingredients": "
+{"Flour": 3.5},
+{ "yeast": 0.002},
+{ "Water": 3.15},
+{ "Eggs": 3}
+"
+  }' \
+  http://localhost:8080/api/recipes
+
+
+   # Create item - successful!!!
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Recipe4","instructions": "Mix flours4 and water together in a bowl . . ."}' \
+  http://localhost:8080/api/recipes
+
+
+     # Update item 
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"name":"Recipe1","instructions":"Mix flour and water together in a bowl . . ."}' \
+  http://localhost:8080/api/recipes/5bf9cc10f941072dec1bf80a
+
+
+     # Delete item
+curl --header "Content-Type: application/json" \
+  --request DELETE \
+  http://localhost:8080/api/recipes/5bf9cc10f941072dec1bf80a
