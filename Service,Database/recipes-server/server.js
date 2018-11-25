@@ -54,13 +54,13 @@ app.get('/api/recipes/:id', function (req, res) {
     console.log("Getting the specified recipe.");
     Recipe.find({
         _id: req.params.id
-    }, function (err, recipes) {
+    }, function (err, recipe) {
         if (err) {
             console.error("Error finding Recipe ", err);
             res.send(err);
         }
 
-        res.json(recipes);
+        res.json(recipe);
     });
 });
 
@@ -75,7 +75,7 @@ app.post('/api/recipes', function (req, res) {
         name: req.body.name,
         instructions: req.body.instructions,
         done: false
-    }, function (err, Recipe) {
+    }, function (err, recipe) {
         if (err) {
             res.send(err);
         }
@@ -92,12 +92,14 @@ app.post('/api/recipes', function (req, res) {
 
 // Update a Recipe Item
 app.put('/api/recipes/:id', function (req, res) {
-    const Recipe = {
+    const updatedRecipe = {
         name: req.body.name,
         instructions: req.body.instructions
     };
     console.log("Updating item - ", req.params.id);
-    Recipe.update({_id: req.params.id}, Recipe, function (err, raw) {
+    Recipe.update({
+        _id: req.params.id
+    }, updatedRecipe, function (err, raw) {
         if (err) {
             res.send(err);
         }
@@ -106,24 +108,18 @@ app.put('/api/recipes/:id', function (req, res) {
 });
 
 
-// Delete a Recipe Item
+
 app.delete('/api/recipes/:id', function (req, res) {
+    console.log("Deleting the specified recipe.");
     Recipe.remove({
         _id: req.params.id
-    }, function (err, Recipe) {
+    }, function (err, recipe) {
         if (err) {
             console.error("Error deleting Recipe ", err);
+            res.send(err);
         }
-        else {
-            Recipe.find(function (err, recipes) {
-                if (err) {
-                    res.send(err);
-                }
-                else {
-                    res.json(recipes);
-                }
-            });
-        }
+
+        res.send("Did the delete.");
     });
 });
 
@@ -131,3 +127,28 @@ app.delete('/api/recipes/:id', function (req, res) {
 // Start app and listen on port 8080  
 app.listen(process.env.PORT || 8080);
 console.log("Recipe server listening on port  - ", (process.env.PORT || 8080));
+
+
+
+
+
+// Delete a Recipe Item
+// app.delete('/api/recipes/:id', function (req, res) {
+//     Recipe.remove({
+//         _id: req.params.id
+//     }, function (err, Recipe) {
+//         if (err) {
+//             console.error("Error deleting Recipe ", err);
+//         }
+//         else {
+//             Recipe.find(function (err, recipes) {
+//                 if (err) {
+//                     res.send(err);
+//                 }
+//                 else {
+//                     res.json(recipes);
+//                 }
+//             });
+//         }
+//     });
+// });
