@@ -22,7 +22,6 @@ import { HttpClientModule } from '@angular/common/http';
     MyApp,
     HomePage,
     ListPage,
-    TestPage,
     LandingPage,
     RecipePage
   ],
@@ -38,7 +37,6 @@ import { HttpClientModule } from '@angular/common/http';
     LandingPage,
     HomePage,
     ListPage,
-    TestPage,
     RecipePage
   ],
   providers: [

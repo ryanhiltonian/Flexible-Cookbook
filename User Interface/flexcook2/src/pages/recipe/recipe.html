@@ -12,7 +12,35 @@
 
 </ion-header>
 
-
 <ion-content padding>
+  <h3>
+    {{recipe.name}}
+  </h3>
+  <!-- <h2>
+    {{recipe.ingredients.Ingredient1}}
+  </h2> -->
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 >
+      <!-- <div *ngFor="let item of ingredientList">
+        {{item}}
+      </div> -->
+      <button id="ecipe" ion-item *ngFor="let item of ingredientList">
+          <!-- <ion-icon [name]="item.icon" item-start></ion-icon> -->
+          {{item}}
+      </button>
+    </ion-col>
+    <ion-col col-8 >
+      next column
+    </ion-col>
+    </ion-row>
+    <br>
+    <ion-row> Recipe Instructions:</ion-row>
+    <ion-row>
+      <ion-col>{{recipe.instructions}}</ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

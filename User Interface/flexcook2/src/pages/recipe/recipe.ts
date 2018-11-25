@@ -15,7 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RecipePage {
 
+  recipe = [];
+  ingredientList = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.recipe = navParams.get('item');
+    console.log(this.recipe);
+
+    this.ingredientList = Object.keys(this.recipe.ingredients);
   }
 
   ionViewDidLoad() {

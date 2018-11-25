@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { TestPage } from '../test/test';
+import { RecipePage } from '../../pages/recipe/recipe';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 
 
@@ -39,7 +39,7 @@ export class LandingPage {
   }
 
   itemTapped(event, recipe) {
-    this.navCtrl.push(TestPage, {
+    this.navCtrl.push(RecipePage, {
       item: recipe
       
     })

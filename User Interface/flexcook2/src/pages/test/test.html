@@ -13,7 +13,11 @@
   <p>
   </p>
   <div *ngIf="recipe">
-      You navigated here by clicking <b>{{recipe.title}}</b>
+      You navigated here by clicking <b>{{recipe.name}}</b>
   </div>
+  
+  <button id="chooRecipe" margin-bottom ion-item (click)="buttonTapped(recipe)">
+  </button>
+     
       
 </ion-content>

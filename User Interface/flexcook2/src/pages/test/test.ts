@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
+import { RecipePage } from '../../pages/recipe/recipe';
 
 @Component({
   selector: 'page-test',
@@ -18,4 +19,10 @@ export class TestPage {
     console.log(recipe)
   }
  
-} 
+  buttonTapped(recipe) {
+    this.navCtrl.push(RecipePage, {
+      item: recipe
+      
+    })
+  };
+}
