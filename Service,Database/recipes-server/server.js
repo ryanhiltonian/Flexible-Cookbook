@@ -25,8 +25,9 @@ app.use(function (req, res, next) {
 // Model
 var Recipe = mongoose.model('Recipe', {
     name: String,
-    instructions: String
-    // ingredients: JSON
+    instructions: String,
+    ingredients: JSON,
+    images: Array
 });
 
 
@@ -74,6 +75,8 @@ app.post('/api/recipes', function (req, res) {
     Recipe.create({
         name: req.body.name,
         instructions: req.body.instructions,
+        ingredients: req.body.ingredients,
+        images: req.body.images,
         done: false
     }, function (err, recipe) {
         if (err) {
@@ -94,7 +97,9 @@ app.post('/api/recipes', function (req, res) {
 app.put('/api/recipes/:id', function (req, res) {
     const updatedRecipe = {
         name: req.body.name,
-        instructions: req.body.instructions
+        instructions: req.body.instructions,
+        ingredients: req.body.ingredients,
+        images: req.body.images
     };
     console.log("Updating item - ", req.params.id);
     Recipe.update({

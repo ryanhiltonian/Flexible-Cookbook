@@ -7,9 +7,15 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list'; 
 import { TestPage } from '../pages/test/test';
 import { LandingPage } from '../pages/landing/landing';
+import { RecipePage } from '../pages/recipe/recipe';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { DataServiceProvider } from '../providers/data-service/data-service';
+
+import { HttpModule } from '@angular/http'
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -17,9 +23,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     TestPage,
-    LandingPage
+    LandingPage,
+    RecipePage
   ],
   imports: [
+    HttpModule,
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
   ],
@@ -29,12 +38,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LandingPage,
     HomePage,
     ListPage,
-    TestPage
+    TestPage,
+    RecipePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataServiceProvider
   ]
 })
 export class AppModule {}
