@@ -53,22 +53,34 @@ getList() {
           "__v": 0
       },
       {
-          "images": null,
+          "images": [],
           "_id": "5bf9e5bbfb9a6339ec4ea87f",
           "name": "Recipe13",
-          "instructions": null,
+          "instructions": "",
           "__v": 0,
-          "ingredients": null
+          "ingredients": {'':[]}
       },
       {
           "images": [],
           "_id": "5bf9e692f985511c5c2a8bb9",
           "name": "Recipe14",
-          "instructions": "Mix flours14 and water together in a bowl . . .",
+          "instructions": "Mix flours14 and water together in a bowl Do you really need to sift flour? Can you eyeball the water for a pot of rice? We debunk 14 common recipe instructions that aren't really necessary. Save your time and energy for something more important-like dessert!Do you really need to sift flour? Can you eyeball the water for a pot of rice? We debunk 14 common recipe instructions that aren't really necessary. Save your time and energy for something more important-like dessert!",
           "ingredients": {
             "Ingredient1": ".15",
             "Ingredient2": ".105",
-            "ingredien3": "14"
+            "ingredient3": "14",
+            "Ingredient4": ".15",
+            "Ingredient5": ".105",
+            "ingredient6": "14",
+            "Ingredient7": ".15",
+            "Ingredient8": ".105",
+            "ingredient9": "14",
+            "Ingredient10": ".15",
+            "Ingredient11": ".105",
+            "ingredient12": "14",
+            "Ingredient13": ".15",
+            "Ingredient14": ".105",
+            "ingredient15": "14"
         },
           "__v": 0
       },
@@ -80,7 +92,19 @@ getList() {
           "ingredients": {
             "Ingredient1": ".15",
             "Ingredient2": ".105",
-            "ingredien3": "14"
+            "ingredient3": "14",
+            "Ingredient4": ".15",
+            "Ingredient5": ".105",
+            "ingredient6": "14",
+            "Ingredient7": ".15",
+            "Ingredient8": ".105",
+            "ingredient9": "14",
+            "Ingredient10": ".15",
+            "Ingredient11": ".105",
+            "ingredient12": "14",
+            "Ingredient13": ".15",
+            "Ingredient14": ".105",
+            "ingredient15": "14"
         },
           "__v": 0
       },
@@ -97,18 +121,37 @@ getList() {
           "__v": 0
       },
       {
-          "images": [],
-          "_id": "5bf9eb8926bce823bc545487",
-          "name": "Recipe19",
-          "__v": 0
+        "images": [],
+        "_id": "5bf9ea2226bce823bc545486",
+        "name": "Recipe19",
+        "instructions": "Mix flours14 and water together in a bowl Do you really need to sift flour? Can you eyeball the water for a pot of rice? We debunk 14 common recipe instructions that aren't really necessary. Save your time and energy for something more important-like dessert!Do you really need to sift flour? Can you eyeball the water for a pot of rice? We debunk 14 common recipe instructions that aren't really necessary. Save your time and energy for something more important-like dessert!Mix flours14 and water together in a bowl Do you really need to sift flour? Can you eyeball the water for a pot of rice? We debunk 14 common recipe instructions that aren't really necessary. Save your time and energy for something more important-like dessert!Do you really need to sift flour? Can you eyeball the water for a pot of rice? We debunk 14 common recipe instructions that aren't really necessary. Save your time and energy for something more important-like dessert!Mix flours16 and water together in a bowl Bring 3 cups water and 1/2 teaspoon salt to a boil.       Add 1 cup cereal and turn heat to low. Cover and cook for about 10 minutes, stirring occasionall      Makes enough for four hungry folks (about 2-1/2 cups). Serve with honey (or brown sugar) and milk. ",
+        "ingredients": {
+            "Ingredient1": ".15",
+            "Ingredient2": ".105",
+            "ingredien3": "14"
+        },
+        "__v": 0
       }
   ]
     
-    
-    
-    
-    
+
 }
 
+getUoM() {
+
+//Like the previous method, above, this one will be updated when I figure out how to 
+//actually get the objects from the database.  For now, I will use this example 
+//document, which is the Unit of Measure conversion table.
+
+
+    return [
+        {
+            "Cups": 6.667,
+            "Pints": 3.333,
+            "Gallons": 0.4166875,
+            "Ounces": 53.336
+          }
+    ]
+}
 
 }

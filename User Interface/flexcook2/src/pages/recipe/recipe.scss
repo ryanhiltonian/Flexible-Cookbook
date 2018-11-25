@@ -1,3 +1,39 @@
 page-recipe {
 
-}
+    
+        #bkgrnd {
+            background-color: map-get($colors, 'primary');
+        }
+    
+        .button {
+            background-color: map-get($colors, 'mybrown');
+            border: 3px solid black;
+            color: white;
+            font-weight: bold;
+            margin-left: 32%;
+            margin-top: 1em;
+        }
+    
+        #page {
+            background-color: map-get($colors, 'primary');
+            font-weight: bold;
+            border-color: map-get($colors, 'secondary');
+            font-size: 140%;
+        }
+
+        #card {
+            font-size: medium;
+            background-color: map-get($colors, 'secondary' );
+            text-align: center
+        }
+        
+        #leftPlease {
+            text-align: left;
+            float: left;
+        }
+
+        #UoM {
+            float: left;
+        }
+    
+    }
