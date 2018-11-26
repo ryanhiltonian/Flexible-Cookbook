@@ -10,3 +10,10 @@ in the recipe itself.  The user can switch between cups, gallons, ounces,
 tablespoons, mililiters, etc and have their recipe displayed that way.
 More documentation about the purpose and use of this application is available
 in the "documenation" folder.
+
+# Reviewer:
+To test the app, clone the repository, open a command prompt, and navigate
+to the foler "flexcook2".  Then type "ionic serve --lab"
+If it doesn't open a browser for you, you can open one and go to 
+http://localhost:8200
+
