@@ -38,6 +38,11 @@ getList() {
             "Ingredient2": ".105",
             "ingredien3": "14"
         },
+            "Units_of_Measure": [
+            "Cups",
+            "Gallons",
+            "Ounces"
+        ],
           "__v": 0
       },
       {
@@ -50,6 +55,11 @@ getList() {
             "Ingredient2": ".105",
             "ingredien3": "14"
         },
+            "Units_of_Measure": [
+            "Cups",
+            "Gallons",
+            "Ounces"
+        ],
           "__v": 0
       },
       {
@@ -58,7 +68,8 @@ getList() {
           "name": "Recipe13",
           "instructions": "",
           "__v": 0,
-          "ingredients": {'':[]}
+          "ingredients": {'':[]},
+          "Units of Meausre": []
       },
       {
           "images": [],
@@ -82,6 +93,22 @@ getList() {
             "Ingredient14": ".105",
             "ingredient15": "14"
         },
+             "Units_of_Measure": [
+            "Cups",
+            "Gallons",
+            "Ounces",
+            "Pints",
+            "Cups",
+            "Gallons",
+            "Ounces",
+            "Pints",
+            "Cups",
+            "Gallons",
+            "Ounces",
+            "Pints","Cups",
+            "Gallons",
+            "Ounces"
+        ],
           "__v": 0
       },
       {
@@ -106,6 +133,22 @@ getList() {
             "Ingredient14": ".105",
             "ingredient15": "14"
         },
+            "Units_of_Measure": [
+                "Cups",
+                "Gallons",
+                "Ounces",
+                "Pints",
+                "Cups",
+                "Gallons",
+                "Ounces",
+                "Pints",
+                "Cups",
+                "Gallons",
+                "Ounces",
+                "Pints","Cups",
+                "Gallons",
+                "Ounces"
+            ],
           "__v": 0
       },
       {
@@ -118,6 +161,10 @@ getList() {
               "Ingredient2": ".105",
               "ingredien3": "14"
           },
+                "Units_of_Measure": [
+                "Cups",
+                "Gallons"
+            ],
           "__v": 0
       },
       {
@@ -130,6 +177,10 @@ getList() {
             "Ingredient2": ".105",
             "ingredien3": "14"
         },
+        "Units_of_Measure": [
+        "Cups",
+        "Gallons"
+    ],
         "__v": 0
       }
   ]
