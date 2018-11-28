@@ -197,10 +197,16 @@ getUoM() {
 
     return [
         {
-            "Cups": 6.667,
+            "Cups": 6.66667,
             "Pints": 3.333,
             "Gallons": 0.4166875,
-            "Ounces": 53.336
+            "Ounces": 53.336,
+            "Tablespoons": 106.66667,
+            "Teaspoons": 320,
+            "Liters": 1.57725491789,
+            "Milliliters": 1577.25491789,
+            "Cubic Inches": 96.25
+
           }
     ]
 }

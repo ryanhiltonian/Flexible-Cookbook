@@ -23,21 +23,29 @@
   </h2> -->
 
     <ion-row>
-      <ion-col col-12>
+      <ion-col col-14>
 
-        <ion-row ion-list id="ingredientsList" *ngFor="let item of ingredientsList; let i = index">
+        <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
           <!-- <ion-icon [name]="item.icon" item-start></ion-icon> -->
           
-          <ion-col col-12>
           <ion-card id="card">
           
-            {{item}} <br> <br>
-            <div id="leftPlease">{{quantitiesList[i]}}</div>
-            <div id="UoM">{{UoMsDisplayed[i]}}</div>
+            <div id="ingredientName" >{{item}}</div> 
+            <div id="amount">{{quantitiesList[i]}}</div><br> <br>
+            <button id="change" (click)="convert(item, i)">Convert to ...</button>
+            <button id="UoM">{{UoMsDisplayed[i]}}</button>
+            <!-- <ion-list id="UoMlist">
+                <ion-item>
+                  <ion-label>Measure in </ion-label>
+                  <ion-select [(ngModel)]="gaming" >
+                    <ion-option *ngFor="let unit of conversionNames" value={{unit}} selected="true">
+                      {{unit}}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-list> -->
             
           </ion-card>
-        </ion-col>
-        
         </ion-row>
       
       </ion-col>
