@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, NavController, NavParams } from 'ionic-angular';
 import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import { RecipeEditorComponent } from '../components/recipe-editor/recipe-editor';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,7 +29,8 @@ import { DialogServiceProvider } from '../providers/dialog-service/dialog-servic
     ListPage,
     LandingPage,
     RecipePage,
-    InputPage
+    InputPage,
+    RecipeEditorComponent
   ],
   imports: [
     HttpModule,
@@ -44,7 +46,8 @@ import { DialogServiceProvider } from '../providers/dialog-service/dialog-servic
     HomePage,
     ListPage,
     RecipePage,
-    InputPage
+    InputPage,
+    RecipeEditorComponent
   ],
   providers: [
     StatusBar,

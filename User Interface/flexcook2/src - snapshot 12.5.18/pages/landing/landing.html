@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Landing Page - List of Recipes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="bkgrnd">
+  
+  <div>
+  <button ion-button round center (click)="addNew()">Add Recipe</button>
+
+  <ion-list inset>
+    <button id="chooseRecipe" margin-bottom ion-item *ngFor="let item of recipes" (click)="itemTapped($event, item)">
+      <!-- <ion-icon [name]="item.icon" item-start></ion-icon> -->
+      {{item.name}}
+      <!-- <div class="item-note" item-end>
+        {{item.note}}
+      </div> -->
+    </button>
+  </ion-list>
+  </div>
+</ion-content>

@@ -35,16 +35,10 @@ page-landing {
         margin-top: 1em;
     }
 
-    #slidingCard {
-        padding: 0em;
-        margin: 0%;
-    }
-
     #chooseRecipe {
         background-color: map-get($colors, 'mytan');
         font-weight: bold;
         border-color: map-get($colors, 'secondary');
-        margin: 0%;
     }
     
 

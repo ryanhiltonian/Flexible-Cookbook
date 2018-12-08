@@ -1,0 +1,140 @@
+    page-input {
+
+    
+        #bkgrnd {
+            background-color: map-get($colors, 'mybrown');
+        }
+
+        #buttonrow {
+            background-color: map-get($colors, 'mybrown');
+            // background-color: gray
+            // color: white
+        }
+    
+        .segbtn {
+            // background-color: red;
+            // flood-color: black;
+            
+            // border: 3px solid black;
+            // color: black;
+            // text-decoration-color: white;
+            // font-weight: bold;
+            // text-shadow: 3em;
+            // margin-left: 32%;
+            // margin-top: 1em;
+        }
+
+        #toptab {
+            // background-color
+            // flood-color: black;
+            
+            // border: 3px solid black;
+            color: white;
+            // text-decoration-color: white;
+            font-weight: bold;
+            // text-shadow: 3em;
+            // margin-left: 32%;
+            // margin-top: 1em;
+        }
+
+        button {
+            // float: right;
+            font-size: large;
+            // background-color: map-get($colors, 'mytan');
+            // border: solid, white;
+            border: 3px solid black;
+            border-width: 3px;
+            border-radius: 6px;
+            padding: 5px;
+            margin-right: 5px;
+            background-color: map-get($colors, 'mytan');
+            color: black;
+            // font-weight: bold;
+            // margin-left: 32%;
+            // margin-top: 1em;
+        }
+    
+
+        #formspace {
+            background-color: map-get($colors , 'primary' );
+            border-radius: 9px;
+            border: 3px solid black;
+
+        }
+
+        #page {
+            // background-color: map-get($colors, 'primary');
+            background-color: white;
+            font-weight: bold;
+            border-color: map-get($colors, 'secondary');
+            font-size: 140%;
+        }
+
+        #card {
+            font-size: large;
+            background-color: map-get($colors, 'secondary' );
+            // text-align: center
+        }
+
+        #remove {
+            float: right;
+            font-size: small;
+            background-color: map-get($colors, 'mytan');
+            // border: solid, white;
+            border: 3px solid black;
+            border-width: 3px;
+            border-radius: 4px;
+            padding: 3px;
+            margin: 3px;
+            // background-color: map-get($colors, 'primary');
+            // color: white;
+            // font-weight: bold;
+            // margin-left: 32%;
+            // margin-top: 1em;
+        }
+        
+        #amount {
+            text-align: left;
+            float: center;
+            padding: 10px;
+            font-size: large
+        }
+
+        #change {
+            float: left;
+            padding: 5px;
+            background-color: map-get($colors, 'mybrown');
+            border: 3px solid black;
+            color: white;
+            border-radius: 4px;
+            margin-left: 6px;
+            margin-bottom: 4px;
+        }
+
+        #UoM {
+            float: right;
+            font-size: large;
+            background-color: map-get($colors, 'mytan');
+            // border: solid, white;
+            border-width: 4px;
+            padding: 5px;
+            margin-right: 5px;
+            // background-color: map-get($colors, 'mybrown');
+            // border: 3px solid black;
+            // color: white;
+            font-weight: bold;
+            // margin-left: 32%;
+            // margin-top: 1em;
+        }
+
+        #ingredientName {
+            float: left;
+        }
+
+        #UoMlist {
+            
+        }
+    
+    }
+
+

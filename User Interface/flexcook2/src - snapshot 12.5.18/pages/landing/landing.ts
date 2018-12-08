@@ -4,6 +4,7 @@ import { RecipePage } from '../../pages/recipe/recipe';
 import { InputPage } from '../../pages/input/input';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { DialogServiceProvider } from '../../providers/dialog-service/dialog-service';
+import { RecipeEditorComponent } from '../../components/recipe-editor/recipe-editor';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LandingPage {
   errorMessage:string;
 
   constructor(public alertCtrl: AlertController, public dataSrv: DataServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
-  
+    // this.loadRecipes();
     dataSrv.dataChanged$.subscribe((dataChanged: boolean) => {
     this.loadRecipes();
     });
@@ -47,16 +48,51 @@ export class LandingPage {
     console.log(recipe.title);
   }
   
+  
+  // prompt() {
+  //   let itemname = this.dataSrv.prompt();
 
+  // }
 
   addNew() {
-
+    // let itemname = this.dataSrv.prompt();
+    // console.log("Got back itemname: " + itemname)
     this.navCtrl.push(InputPage, {
-      newId: "yes"
+      willbenew: "yes"
     })
     
     console.log("Add new recipe button clicked.");
   }
+
+  // prompt(){
+  //   const prompt = this.alertCtrl.create({
+  //     title: 'Add Recipe',
+  //     message: "Please enter recipe name...",
+  //     inputs: [
+  //       {
+  //         name: 'name',
+  //         placeholder: 'Name'
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         handler: data => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Save',
+  //         handler: item => {
+  //           this.addNew(item.name);
+            
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   prompt.present();
+  // }
+  
 
 
 }

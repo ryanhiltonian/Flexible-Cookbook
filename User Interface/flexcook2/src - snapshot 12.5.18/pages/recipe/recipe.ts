@@ -19,7 +19,7 @@ export class RecipePage {
   conversionFactors = [];
   UoMsDisplayed = []; //This lists the units of measure for each ingredient, in the order seen on the screen.
 
-  constructor(public alertCtrl: AlertController, public dataSrv: DataServiceProvider, public navParams: NavParams, public navCtrl: NavController) {
+  constructor(public alertCtrl: AlertController, public dataSrv: DataServiceProvider, public navParams: NavParams) {
     this.recipe = navParams.get('item');
     console.log(this.recipe);
     console.log("Place 1");

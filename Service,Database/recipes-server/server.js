@@ -27,9 +27,14 @@ var Recipe = mongoose.model('Recipe', {
     name: String,
     instructions: String,
     ingredients: JSON,
-    images: Array
+    images: Array,
+    units_of_measure: Array
 });
 
+// var Recipe = mongoose.model('Recipe', {
+//     name: String,
+//     instructions: Number
+// });
 
 
 // Get all Recipe items
@@ -44,7 +49,8 @@ app.get('/api/recipes', function (req, res) {
         if (err) {
             res.send(err);
         }
-
+        
+        // console.log(res.json(recipes));
         res.json(recipes); // return all recipes in JSON format
     });
 });
@@ -77,6 +83,7 @@ app.post('/api/recipes', function (req, res) {
         instructions: req.body.instructions,
         ingredients: req.body.ingredients,
         images: req.body.images,
+        units_of_measure: req.body.units_of_measure,
         done: false
     }, function (err, recipe) {
         if (err) {
@@ -99,7 +106,8 @@ app.put('/api/recipes/:id', function (req, res) {
         name: req.body.name,
         instructions: req.body.instructions,
         ingredients: req.body.ingredients,
-        images: req.body.images
+        images: req.body.images,
+        units_of_measure: req.body.units_of_measure
     };
     console.log("Updating item - ", req.params.id);
     Recipe.update({
@@ -128,10 +136,25 @@ app.delete('/api/recipes/:id', function (req, res) {
     });
 });
 
+app.delete('/api/allrecipes', function (req, res) {
+    console.log("Deleting all recipes.");
+    Recipe.remove({
+        
+    }, function (err, recipe) {
+        if (err) {
+            console.error("Error deleting Recipe ", err);
+            res.send(err);
+        }
+
+        res.send("Did the delete.");
+    });
+});
+
+
 
 // Start app and listen on port 8080  
-app.listen(process.env.PORT || 8080);
-console.log("Recipe server listening on port  - ", (process.env.PORT || 8080));
+app.listen(process.env.PORT || 8081);
+console.log("Recipe server listening on port  - ", (process.env.PORT || 8081));
 
 
 

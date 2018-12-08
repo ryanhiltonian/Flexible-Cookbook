@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { TestPage } from '../pages/test/test';
 import { RecipePage } from '../pages/recipe/recipe';
 import { InputPage } from '../pages/input/input';
+import { RecipeEditorComponent } from '../components/recipe-editor/recipe-editor';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,7 +32,8 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Test', component: TestPage },
       { title: 'Recipe', component: RecipePage },
-      { title: 'Input', component: InputPage }
+      { title: 'Input', component: InputPage },
+      { title: 'form', component: RecipeEditorComponent }
     ];
 
   }

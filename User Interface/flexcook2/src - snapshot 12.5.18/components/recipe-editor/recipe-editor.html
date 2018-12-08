@@ -1,0 +1,91 @@
+<!-- Generated template for the RecipeEditorComponent component -->
+
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Ingredient Form</h1>
+    <form (ngSubmit)="onSubmit()" #ingredForm="ngForm">
+      <div class="form-group">
+        <label for="name">Ingredient</label>
+        <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="model.name" name="name"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="text" class="form-control" id="quantity" 
+          required 
+          [(ngModel)]="model.quantity" name="quantity" 
+          #quantity="ngModel">
+      <div [hidden]="quantity.valid || quantity.pristine" class="alert alert-danger">
+        Quantity must be a number
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="uom">Select</label>
+        <select class="form-control" id="uom"
+                required
+                [(ngModel)]="model.uom" name="uom"
+                #uom="ngModel">
+          <option *ngFor="let unit of uoms" [value]="unit">{{unit}}</option>
+        </select>
+        <div [hidden]="uom.valid || uom.pristine" class="alert alert-danger">
+          Unit of Measure is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!ingredForm.form.valid">Add this ingredient</button>
+      <!-- <button type="button" class="btn btn-default" (click)="newIngred(); ingredForm.reset()">New Hero</button>
+      <i>with</i> reset -->
+
+      &nbsp;&nbsp;
+      <button type="button" class="btn btn-default" (click)="newIngred()">Clear</button>
+      <br>
+      <button id="btndone" (click)="putNew()">Done editing this Recipe</button>
+
+     <!-- NOT SHOWN IN DOCS -->
+
+     <!-- - -->
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+  <!-- <div> -->
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9">{{ model.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Alter Ego</div>
+      <div class="col-xs-9">{{ model.quantity }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Power</div>
+      <div class="col-xs-9">{{ model.power }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+</div>
+
+<div>
+<ion-row ion-list id="ingredientRow" *ngFor="let item of ingList; let i = index">
+  <ion-icon [name]="item.icon" item-start></ion-icon>
+      <ion-card id="card">
+          
+    <div id="ingredientCard">{{item}}:
+      {{qtyList[i]}}
+      {{UoMs[i]}}
+    
+    <button id="remove">Remove</button>
+  </div>
+  </ion-card>
+</ion-row>
+</div>

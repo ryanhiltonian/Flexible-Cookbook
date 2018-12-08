@@ -1,0 +1,116 @@
+<!--
+  Generated template for the InputPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>input</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  id="bkgrnd" padding>
+
+    <div id="buttonrow" padding>
+        <ion-segment [(ngModel)]="part">
+          <ion-segment-button class="segbtn" value="Ingredients" id="toptab">
+            INGREDIENTS
+          </ion-segment-button>
+          <ion-segment-button class="segbtn" value="Instructions" id="toptab">
+            INSTRUCTIONS
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      
+      <div [ngSwitch]="part">
+
+        <ion-list *ngSwitchCase="'Ingredients'">
+          <ion-item id="formspace">
+              <recipe-editor></recipe-editor>
+              <div>
+              </div>
+          </ion-item>              
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'Instructions'">
+          <ion-item>
+              <ion-thumbnail item-start>
+                <img src="img/thumbnail-puppy-1.jpg">
+              </ion-thumbnail>
+          </ion-item>
+            ...
+        </ion-list>
+
+          
+
+
+              <!-- <ion-row ion-list id="ingredientRow" *ngFor="let item of ingList; let i = index">
+                <ion-icon [name]="item.icon" item-start></ion-icon>
+                    <ion-card id="card">
+                        
+                  <div>{{item}}:
+                    {{qtyList[i]}}
+                    {{UoMs[i]}}
+                  
+                  <button id="remove">Remove</button>
+                </div>
+                </ion-card>
+              </ion-row> -->
+
+
+          <!-- <ion-list>
+      
+            <ion-item>
+              <ion-label>Ingredient</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Quantity</ion-label>
+              <ion-input type="number"></ion-input>
+            </ion-item>
+
+            
+                <ion-list>
+                    <ion-item>
+                      <ion-label>Select</ion-label>
+                      <ion-select [(ngModel)]="gaming">
+                        <ion-option value="Cups">Cups</ion-option>
+                        <ion-option value="Pints">Pints</ion-option>
+                        <ion-option value="Quarts">Quarts</ion-option>
+                        <ion-option value="Gallons">Gallons</ion-option>
+                        <ion-option value="Ounces">Ounces</ion-option>
+                        <ion-option value="Tablespoons">Tablespoons</ion-option>
+                        <ion-option value="Teaspoons">Teaspoons</ion-option>
+                        <ion-option value="Large Eggs">Large Eggs</ion-option>
+                        <ion-option value="Liters">Liters</ion-option>
+                        <ion-option value="Milliliters">Milliliters</ion-option>
+                        <ion-option value="Cubic Inches">Cubic Inches</ion-option>
+                        <ion-option value="Cubic Centimeters">Cubic Centimeters</ion-option>
+                        <ion-option value="Grams">Grams</ion-option>
+                        <ion-option value="Milligrams">Milligrams</ion-option>
+                        <ion-option value="Pounds">Pounds</ion-option>
+                        <ion-option value="Gills">Gills</ion-option>
+
+
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
+          
+      
+          </ion-list>
+      
+          <div padding>
+            <button block (click)="addIngredient()">Add</button>
+          </div> -->
+        
+
+      
+      
+      </div>
+
+</ion-content>

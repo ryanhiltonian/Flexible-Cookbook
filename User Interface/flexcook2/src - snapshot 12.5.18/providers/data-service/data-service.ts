@@ -7,6 +7,7 @@ import { Nav, NavParams, AlertController } from 'ionic-angular';
 import { InputPage } from '../../pages/input/input';
 import { LandingPage } from '../../pages/landing/landing';
 import { DialogServiceProvider } from '../../providers/dialog-service/dialog-service';
+import { RecipeEditorComponent } from '../../components/recipe-editor/recipe-editor';
 
 
 @Injectable()
@@ -57,7 +58,7 @@ getUoM() {
 
     return [
         {
-            "pieces": 1,
+            
             "Cups": 0.25,
             "Pints": 0.125,
             "Quarts": 0.0625,
@@ -65,6 +66,7 @@ getUoM() {
             "Ounces": 2.00,
             "Tablespoons": 4.00,
             "Teaspoons": 12.00,
+            "Large Eggs": 1,
             "Liters": 0.0591471,
             "Milliliters": 59.1471,
             "Cubic Inches": 3.60938,
