@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar>
+  <!-- <ion-navbar hide-back-button="true">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Landing Page - List of Recipes</ion-title>
-  </ion-navbar>
+  </ion-navbar> -->
 </ion-header>
 
 <ion-content id="bkgrnd">
@@ -12,7 +12,7 @@
   <div>
     <button ion-button round center (click)="addNew()">Add Recipe</button>
 
-    <ion-list inset>
+    <ion-list id="mainList" inset>
 
       <ion-item-sliding id="slidingCard" *ngFor="let item of recipes; let i = index">
         <ion-item>
@@ -23,17 +23,17 @@
           </h2>
         </ion-item>
         <ion-item-options>
-          <button (click)="editItem(item, i)" ion-button color="primary" icon-start>
+          <button (click)="editRecipe(item, i)" ion-button color="primary" icon-start>
             <ion-icon name="create"></ion-icon>
             Edit
           </button>
-          <button (click)="shareItem(item, i)" ion-button color="light" icon-start>
+          <!-- <button (click)="shareItem(item, i)" ion-button color="light" icon-start>
             <ion-icon name="share"></ion-icon>
             Share
-          </button>
-          <button (click)="removeItem(item, i)" ion-button color="secondary" icon-start>
+          </button> -->
+          <button (click)="removeRecipe(item, i)" ion-button color="secondary" icon-start>
             <ion-icon name="trash"></ion-icon>
-            Done
+            Delete
           </button>
         </ion-item-options>
       </ion-item-sliding>

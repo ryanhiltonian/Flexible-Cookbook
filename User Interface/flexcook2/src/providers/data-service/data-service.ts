@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import{map,catchError} from 'rxjs/operators';
+import{map, catchError} from 'rxjs/operators';
 import{ Subject} from 'rxjs';
 import { Nav, NavParams, AlertController } from 'ionic-angular';
 import { InputPage } from '../../pages/input/input';
 import { LandingPage } from '../../pages/landing/landing';
-import { DialogServiceProvider } from '../../providers/dialog-service/dialog-service';
 
 
 @Injectable()
@@ -18,11 +17,21 @@ export class DataServiceProvider {
   dataChangeSubject: Subject <boolean>;
   baseURL="http://192.168.0.131:8081";
 
-  constructor (public http: HttpClient, public alertCtrl: AlertController, public dialogSrv: DialogServiceProvider){
+  conversionJson = this.getUoM()[0];
+  conversionNames = Object.keys(this.conversionJson);
+  conversionFactors = [];
+
+  constructor (public http: HttpClient, public alertCtrl: AlertController){
     console.log('Hello DataServiceProvider Provider');
 
     this.dataChangeSubject=new Subject <boolean>();
     this.dataChanged$=this.dataChangeSubject.asObservable();
+
+    for( let item of this.conversionNames) {
+      let num = this.conversionJson[item];
+      this.conversionFactors.push(num);
+    }
+
   }
 
   getList():Observable<object[]> {
@@ -46,15 +55,20 @@ export class DataServiceProvider {
     }else{
       errMsg=error.message ? error.message : error.toString();
     }
-    
-    // console.error(errMsg);
     return Observable.throw(errMsg);
   }
 
+  putInfo(newRec) {
+    console.log("launching putInfo.")
+    this.http.put(this.baseURL +"/api/recipes/" + newRec._id, newRec).subscribe(res=> {
+    });
+    this.dataChangeSubject.next(true);
+  }
+
+
+
 getUoM() {
-
 //For now, I will let the conversion factors be hard-coded
-
     return [
         {
             "pieces": 1,
@@ -77,58 +91,34 @@ getUoM() {
     ]
 }
 
-
-// prompt(){
-//   const prompt = this.alertCtrl.create({
-//     title: 'Add Recipe',
-//     message: "Please enter recipe name...",
-//     inputs: [
-//       {
-//         name: 'name',
-//         placeholder: 'Name'
-//       }
-//     ],
-//     buttons: [
-//       {
-//         text: 'Cancel',
-//         handler: data => {
-//           console.log('Cancel clicked');
-//         }
-//       },
-//       {
-//         text: 'Save',
-//         handler: item => {
-//           return item.name;
-          
-//         }
-//       }
-//     ]
-//   });
-//   prompt.present();
-// }
+getConstants() {
+  return [this.conversionJson, this.conversionNames, this.conversionFactors];
+}
 
 
+parseData(recipe) {
+  let quantitiesList = [];  //quantities list starts with unitless numbers, but gets altered before display
+  let combinedList = recipe.ingredients;  //combined list has unitless numbers
+  let ingredientsList = Object.keys(recipe.ingredients);
+  let uomsDisplayed = recipe.units_of_measure;
 
-// addNew(item) {
-//   this.navCtrl.push(InputPage, {
-//     recipename: item.name
-//   })
-  
-//   console.log("Add new recipe button clicked.");
-// }
+  for( let item of ingredientsList) {
+    let num = combinedList[item];
+    quantitiesList.push(num);
+  }
 
+    //Start with the quantities list as it shows in the JSON,
+  //But before displaying it, alter each value according to the conversion
+  //factor needed, and save each back into the quantitiesList.
 
-  // newid: string;
+  for (var _i = 0; _i < quantitiesList.length; _i++) {
+    var num1 = +quantitiesList[_i];
+    var num2 = +this.conversionJson[uomsDisplayed[_i]]; 
+    quantitiesList[_i] = (num1 * num2).toFixed(2);
+  }
 
-  // getNewId() {
-  //   this.http.post(this.baseURL +"/api/recipes/", {}).subscribe(res=> {
-  //     // this.newitem=res[3]["_id"];
-  //     this.newid = res[res["length"]-1]["_id"];
-  //     console.log(this.newid);
-  //     this.dataChangeSubject.next(true);
-  //     // this.recedit.nextid = this.newid;
-  //     // return this.newid;
-  //   });
-  // }
+  return [ingredientsList, quantitiesList, combinedList, uomsDisplayed];
+
+}
 
 }

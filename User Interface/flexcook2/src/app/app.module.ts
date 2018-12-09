@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list'; 
-import { TestPage } from '../pages/test/test';
 import { LandingPage } from '../pages/landing/landing';
 import { RecipePage } from '../pages/recipe/recipe';
 import { InputPage } from '../pages/input/input';
@@ -18,14 +16,12 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
 
 import { HttpModule } from '@angular/http'
 import { HttpClientModule } from '@angular/common/http';
-import { DialogServiceProvider } from '../providers/dialog-service/dialog-service';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     LandingPage,
     RecipePage,
     InputPage
@@ -42,7 +38,6 @@ import { DialogServiceProvider } from '../providers/dialog-service/dialog-servic
     MyApp,
     LandingPage,
     HomePage,
-    ListPage,
     RecipePage,
     InputPage
   ],
@@ -50,8 +45,7 @@ import { DialogServiceProvider } from '../providers/dialog-service/dialog-servic
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataServiceProvider,
-    DialogServiceProvider
+    DataServiceProvider
   ]
 })
 export class AppModule {}

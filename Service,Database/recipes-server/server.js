@@ -126,13 +126,19 @@ app.delete('/api/recipes/:id', function (req, res) {
     console.log("Deleting the specified recipe.");
     Recipe.remove({
         _id: req.params.id
-    }, function (err, recipe) {
+    }, function (err, raw) {
         if (err) {
             console.error("Error deleting Recipe ", err);
             res.send(err);
         }
 
-        res.send("Did the delete.");
+        // create and return all the recipes
+        Recipe.find(function (err, recipes) {
+            if (err)
+                res.send(err);
+            res.json(recipes);
+        });
+
     });
 });
 
@@ -146,7 +152,7 @@ app.delete('/api/allrecipes', function (req, res) {
             res.send(err);
         }
 
-        res.send("Did the delete.");
+        res.send("Deleted all recipes.");
     });
 });
 

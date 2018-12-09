@@ -35,7 +35,12 @@ page-landing {
         margin-top: 1em;
     }
 
+    #mainList {
+        background-color: map-get($colors, 'primary' );
+    }
+
     #slidingCard {
+        background-color: map-get($colors, 'primary' );
         padding: 0em;
         margin: 0%;
     }

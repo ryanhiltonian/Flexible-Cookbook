@@ -68,7 +68,7 @@
                               required
                               [(ngModel)]="model.uom" name="uom"
                               #uom="ngModel">
-                        <option *ngFor="let unit of uoms" [value]="unit">{{unit}}</option>
+                        <option *ngFor="let unit of UoMs" [value]="unit">{{unit}}</option>
                       </select>
                       <div [hidden]="uom.valid || uom.pristine" class="alert alert-danger">
                         Unit of Measure is required
@@ -81,8 +81,8 @@
               
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn-default" (click)="newIngred()">Clear</button>
-                    <br>
-                    <button id="btndone" (click)="putNew()">Done editing this Recipe</button>
+                    <!-- <br>
+                    <button id="btndone" (click)="putNew()">Done editing this Recipe</button> -->
               
                    <!-- NOT SHOWN IN DOCS -->
               
@@ -91,20 +91,20 @@
                 </div>
               
                 <div [hidden]="!submitted">
-                  <button class="btn btn-primary" (click)="submitted=false">Add another ingredient</button>
+                  <button class="btn btn-primary" (click)="submitted=false; newIngred()">Add another ingredient</button>
                 </div>
               </div>
               
               <div>
-              <ion-row ion-list id="ingredientRow" *ngFor="let item of ingList; let i = index">
+              <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
                 <ion-icon [name]="item.icon" item-start></ion-icon>
                     <ion-card id="card">
                         
                   <div id="ingredientCard">{{item}}:
-                    {{qtyList[i]}}
-                    {{UoMs[i]}}
+                    {{quantitiesList[i]}}
+                    {{uomsDisplayed[i]}}
                   
-                  <button id="remove">Remove</button>
+                  <button id="remove" (click)="deleteIngred(item, i)">Remove</button>
                 </div>
                 </ion-card>
               </ion-row>
@@ -140,7 +140,7 @@
                         
                   <div>{{item}}:
                     {{qtyList[i]}}
-                    {{UoMs[i]}}
+                    {{uomsList[i]}}
                   
                   <button id="remove">Remove</button>
                 </div>

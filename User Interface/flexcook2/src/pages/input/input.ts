@@ -17,54 +17,58 @@ import {Observable} from 'rxjs/Observable';
 
 export class InputPage {
   
+  baseURL="http://192.168.0.131:8081";
+  submitted = false;
+
+  recipe: Object;
   text: string;
   itemname: string;
-  name = new FormControl('');
-  newid: string;
+  recId: string;
   id: string;
-  ingList = [];
-  newId = "no";
+  instructions: string;
 
-  uoms = [
-    'pieces',
-    'Cups',
-    'Pints',
-    'Quarts',
-    'Gallons',
-    'Ounces',
-    'Tablespoons',
-    'Teaspoons',
-    'Liters',
-    'Milliliters',
-    'Cubic Inches',
-    'Cubic Centimeters',
-    'Grams',
-    'Milligrams',
-    'Pounds',
-    'Gills'
-    ];
-  
-  model = new Ingred(4242, '', this.uoms[0], 0);
 
+  conversionJson = this.dataSrv.conversionJson;
+  conversionNames = this.dataSrv.conversionNames;
+  conversionFactors = this.dataSrv.conversionFactors;
+
+  combinedList = {};
+  ingredientsList = [];
+  quantitiesList = [];
+  uomsDisplayed = [];
+  name = new FormControl('');
+  UoMs = this.conversionNames;
+  model = new Ingred(null, null, null);
 
   constructor(public dataSrv: DataServiceProvider, public alertCtrl: AlertController, public navParams: NavParams, public http: HttpClient) {
-    console.log('Hello Input Page');
     
-    this.newId = navParams.get('newId');
+    
+    console.log('Hello Input Page');
+    this.newIngred();
+    this.recId = navParams.get('recId');
 
-    if(this.newId == "yes") {
-      console.log("newId is yes.")
-      console.log("launching getNewId")
-      this.getNewId()
-      this.prompt()
+    if(this.recId == "newplease") {
+      console.log("recId is newplease.");
+      console.log("launching getNewId");
+      this.getNewId();
+      this.prompt();
+
     } else {
-      console.log("Into the else part now.")
+
+      console.log("Into the else part now.");
+      this.recipe = navParams.get('recipe');
+      this.id = this.recId;
+      this.itemname = this.recipe["name"];
+      this.instructions = this.recipe["instructions"]
+      console.log("name seen as:");
+      console.log(this.itemname);
+
+      [this.ingredientsList, this.quantitiesList, this.combinedList, this.uomsDisplayed] = 
+      this.dataSrv.parseData(this.recipe);
+
     }
   
-    this.getIngList();
-
   }
-
 
   prompt(){
     const prompt = this.alertCtrl.create({
@@ -87,7 +91,6 @@ export class InputPage {
           text: 'Save',
           handler: item => {
             this.itemname = item.name;
-            
           }
         }
       ]
@@ -96,26 +99,10 @@ export class InputPage {
   }
 
   
-  
-
-    
-  // ingList = ["Batter", "Sugar", "Third thing that is really really long and pretty much never ends. For my Testing purposes."];
-  // qtyList = ["4", "1", 8];
-  // UoMs = ["Cups", "Tablespoons", "Teaspoons"];
-  // newvarplz = [];
-
-  qtyList = [];
-  UoMs = [];
-  // thatt = [];
-
-  bringList() {
-    return this.ingList
+  newIngred() {
+    this.model = new Ingred(null, null, null);
   }
 
-
-
-  submitted = false;
-  
   newRec = 
     {
       "images": [],
@@ -123,39 +110,54 @@ export class InputPage {
       "_id": '',
       "name": '',
       "instructions": '',
-      "ingredients": JSON
+      "ingredients": {}
+  }
+
+  resetRec() {
+    this.newRec = 
+    {
+      "images": [],
+      "units_of_measure": [],
+      "_id": '',
+      "name": '',
+      "instructions": '',
+      "ingredients": {}
+  }
   }
 
   onSubmit() { 
     this.submitted = true;
-    this.ingList.push(this.model.name);
-    this.qtyList.push(this.model.quantity);
-    this.UoMs.push(this.model.uom);
-    console.log(this.newRec);
-    console.log("uh.. " + this.id);
+    this.resetRec();
+    let factor = this.conversionJson[this.model.uom];
+    this.ingredientsList.push(this.model.name);
+    this.quantitiesList.push(this.model.quantity);
+    this.uomsDisplayed.push(this.model.uom);
     this.newRec["_id"] = this.id;
     this.newRec["name"] = this.itemname;
-    this.newRec["units_of_measure"].push(this.model.uom);
-    let conversionFactor = this.dataSrv.getUoM()[0][this.model.uom];
-    this.newRec["ingredients"][this.model.name] = (this.model.quantity / conversionFactor);
-    console.log(this.newRec);
-
-    this.putInfo(this.newRec);
-
-      // for( let item of this.ingList) {
-      //   let num = this.ingList[item];
-      //   this.newRec["ingredients"][item] = this.newRec["ingredients"][num];
-      // }
+    this.newRec["units_of_measure"] = this.uomsDisplayed;
+    for (let index in this.ingredientsList) {
+      let factor = this.conversionJson[this.uomsDisplayed[index]];
+      this.newRec["ingredients"][this.ingredientsList[index]] = (this.quantitiesList[index] / factor);
+      }
+    this.dataSrv.putInfo(this.newRec);
   }
 
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
-
-  newIngred() {
-    this.model = new Ingred(4242, '', '', 0);
+  deleteIngred(ingred, i) {
+    
+    this.resetRec();
+    this.ingredientsList.splice(i, 1);
+    this.quantitiesList.splice(i, 1);
+    this.uomsDisplayed.splice(i, 1);
+    this.newRec["_id"] = this.id;
+    this.newRec["name"] = this.itemname;
+    this.newRec["units_of_measure"] = this.uomsDisplayed;
+    for (let index in this.ingredientsList) {
+      let factor = this.conversionJson[this.uomsDisplayed[index]];
+      this.newRec["ingredients"][this.ingredientsList[index]] = (this.quantitiesList[index] / factor);
+      }
+    this.dataSrv.putInfo(this.newRec);
   }
-
-  baseURL="http://192.168.0.131:8081";
+  
 
   getNewId() {
     this.http.post(this.baseURL +"/api/recipes/", {}).subscribe(res=> {
@@ -165,66 +167,10 @@ export class InputPage {
     });
   }
 
-  
-  getIngList() {
-
-    console.log("launching getIngList.")
-  
-    this.http.get(this.baseURL +"/api/recipes/" + this.id, {}).subscribe(res=> {
-      // this.newid = res[res["length"]-1]["_id"];
-      let ingList = [];
-      this.dataSrv.dataChangeSubject.next(true);
-
-      for(let item in res["ingredients"]) {
-        ingList.push(item[0])
-      }
-
-      // let blabla = res["ingredients"]
-      // let pshaw = Array.arguments(blabla)
-      console.log(ingList);
-      return ingList;
-    });
-  }
-
-
-  putInfo(newRec) {
-    console.log("launching putInfo.")
-    this.http.put(this.baseURL +"/api/recipes/" + this.id, newRec).subscribe(res=> {
-    });
-    this.dataSrv.dataChangeSubject.next(true);
-  }
-
-  // postInfo() {
-    
-  // }
-
-
-//   baseURL="http://192.168.0.131:8081";
-
-//   getNewId() {
-//     this.http.post(this.baseURL +"/api/recipes/", {}).subscribe(res=> {
-//       this.newid = res[res["length"]-1]["_id"];
-//       console.log(this.newid);
-//       // this.dataChangeSubject.next(true);
-//       return String(this.newid);
-      
-//     });
-
-//     this.navCtrl.push(RecipeEditorComponent, {
-//       itemid: String(this.newid)
-//       }
-//     )
-// }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad InputPage');
   }
 
   part: string = "Ingredients";
-
-  
-    // this.navCtrl.push(InputPage, {
-    //   itemnew: true
-  
 
 }
