@@ -32,10 +32,6 @@
           <ion-item id="formspace">
 
 
-
-
-
-
               <div class="container">
                 <div [hidden]="submitted">
                   <form (ngSubmit)="onSubmit()" #ingredForm="ngForm">
@@ -94,109 +90,105 @@
                   <button class="btn btn-primary" (click)="submitted=false; newIngred()">Add another ingredient</button>
                 </div>
               </div>
-              
-              <div>
-              <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
-                <ion-icon [name]="item.icon" item-start></ion-icon>
-                    <ion-card id="card">
-                        
-                  <div id="ingredientCard">{{item}}:
-                    {{quantitiesList[i]}}
-                    {{uomsDisplayed[i]}}
-                  
-                  <button id="remove" (click)="deleteIngred(item, i)">Remove</button>
-                </div>
-                </ion-card>
-              </ion-row>
-              </div>
-              
-
-
-
-
+ 
 
 
 
               <div>
               </div>
-          </ion-item>              
+          </ion-item>       
+          
+                       
+
+              
         </ion-list>
       
         <ion-list *ngSwitchCase="'Instructions'">
-          <ion-item>
-              <ion-thumbnail item-start>
-                <img src="img/thumbnail-puppy-1.jpg">
-              </ion-thumbnail>
-          </ion-item>
-            ...
-        </ion-list>
-
-          
+       
+            {{instructions.text}}
 
 
-              <!-- <ion-row ion-list id="ingredientRow" *ngFor="let item of ingList; let i = index">
-                <ion-icon [name]="item.icon" item-start></ion-icon>
-                    <ion-card id="card">
-                        
-                  <div>{{item}}:
-                    {{qtyList[i]}}
-                    {{uomsList[i]}}
-                  
-                  <button id="remove">Remove</button>
+            <ion-list>
+              
+              
+                <ion-item>
+                  <ion-textarea placeholder="Recipe Instructions" id="textformthing"></ion-textarea>
+                </ion-item>
+              </ion-list>
+
+
+            <!-- <ion-item id="formspace">
+
+
+                <div class="container">
+                  <div >
+                    <form (ngSubmit)="saveInstructions()" #instructionsForm="ngForm">
+                      <div class="form-group">
+                        <label for="instructions">Instructions</label>
+                       
+                        <ion-item>
+                            <ion-label>Description</ion-label>
+                            <ion-textarea [(ngModel)]="instructions.text" name="instructions" id="instructionstext"></ion-textarea>
+                          </ion-item>
+
+                        <input type="textarea" class="form-control" id="instructionstext"
+                               required
+                               [(ngModel)]="instructions.text" name="instructions"
+                               #instructions="ngModel">
+
+                      </div>
+                
+
+                
+                      <button type="submit" class="btn btn-success" [disabled]="!instructionsForm.form.valid">Save Instructions</button>
+      
+                      &nbsp;&nbsp;
+                      <button type="button" class="btn btn-default" (click)="saveInstructions()">Clear</button>
+           
+                    </form>
+
+                  </div>
+                
+                
                 </div>
-                </ion-card>
-              </ion-row> -->
-
-
-          <!-- <ion-list>
-      
-            <ion-item>
-              <ion-label>Ingredient</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-      
-            <ion-item>
-              <ion-label>Quantity</ion-label>
-              <ion-input type="number"></ion-input>
-            </ion-item>
+   
+  
+  
+  
+                <div>
+                </div>
+                
+                <form (ngSubmit)="logForm()">
+                    <ion-item>
+                      <ion-label>Todo</ion-label>
+                      <ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Description</ion-label>
+                      <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea>
+                    </ion-item>
+                    <button ion-button type="submit" block>Add Todo</button>
+                  </form>
+            </ion-item> -->
 
             
-                <ion-list>
-                    <ion-item>
-                      <ion-label>Select</ion-label>
-                      <ion-select [(ngModel)]="gaming">
-                        <ion-option value="Cups">Cups</ion-option>
-                        <ion-option value="Pints">Pints</ion-option>
-                        <ion-option value="Quarts">Quarts</ion-option>
-                        <ion-option value="Gallons">Gallons</ion-option>
-                        <ion-option value="Ounces">Ounces</ion-option>
-                        <ion-option value="Tablespoons">Tablespoons</ion-option>
-                        <ion-option value="Teaspoons">Teaspoons</ion-option>
-                        <ion-option value="Large Eggs">Large Eggs</ion-option>
-                        <ion-option value="Liters">Liters</ion-option>
-                        <ion-option value="Milliliters">Milliliters</ion-option>
-                        <ion-option value="Cubic Inches">Cubic Inches</ion-option>
-                        <ion-option value="Cubic Centimeters">Cubic Centimeters</ion-option>
-                        <ion-option value="Grams">Grams</ion-option>
-                        <ion-option value="Milligrams">Milligrams</ion-option>
-                        <ion-option value="Pounds">Pounds</ion-option>
-                        <ion-option value="Gills">Gills</ion-option>
-
-
-                      </ion-select>
-                    </ion-item>
-                  </ion-list>
-          
-      
-          </ion-list>
-      
-          <div padding>
-            <button block (click)="addIngredient()">Add</button>
-          </div> -->
-        
-
-      
+        </ion-list>
       
       </div>
+
+      <div>
+          <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
+         
+                <ion-card id="card">
+                    
+              <div id="ingredientCard">{{item}}:
+                {{quantitiesList[i]}}
+                {{uomsDisplayed[i]}}
+              
+              <button id="remove" (click)="deleteIngred(item, i)">Remove</button>
+            </div>
+            </ion-card>
+          </ion-row>
+          </div>
 
 </ion-content>

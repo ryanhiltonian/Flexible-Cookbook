@@ -65,6 +65,13 @@ export class DataServiceProvider {
     this.dataChangeSubject.next(true);
   }
 
+  removeRecipe(item, i) {
+    // this.recipes.splice(i, 1);
+    this.http.delete(this.baseURL +"/api/recipes/" + item._id).subscribe(res=> {
+    });
+    this.dataChangeSubject.next(true);
+        
+  }
 
 
 getUoM() {

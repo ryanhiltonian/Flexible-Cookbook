@@ -134,6 +134,11 @@
         #UoMlist {
             
         }
+
+        #textformthing {
+            height: 500 px;
+            background-color: map-get($colors, 'primary' )
+        }
     
     }
 

@@ -67,14 +67,9 @@ export class LandingPage {
   }
 
   removeRecipe(item, i) {
-    // this.recipes.splice(i, 1);
-    this.http.delete(this.baseURL +"/api/recipes/" + item._id).subscribe(res=> {
-    });
-    this.dataSrv.dataChangeSubject.next(true);
-    
+    this.dataSrv.removeRecipe(item, i);
     this.navCtrl.push(LandingPage, {
     });
-    
   }
     
 }

@@ -7,4 +7,21 @@ export class Ingred {
     ) {  }
   
   }
+
+
+  export class Instruction {
+
+    constructor(
+      public text: string
+    ) {  }
   
+  }
+  
+  export class Todo {
+
+    constructor(
+      public title: string,
+      public description: string
+    ) {  }
+  
+  }
