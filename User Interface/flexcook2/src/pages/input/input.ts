@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { HttpClient } from '@angular/common/http';
+import { LandingPage } from '../../pages/landing/landing';
 
 import { FormControl } from '@angular/forms';
 import { Ingred, Instruction, Todo }    from '../input/editor';
@@ -37,35 +38,27 @@ export class InputPage {
   quantitiesList = [];
   uomsDisplayed = [];
   tryingtofindout = new FormControl();
-  // thing = new FormControl('');
 
   model = new Ingred(null, null, null);
   instructions = new Instruction('testing');
   todo = new Todo("firstthing", 'secondthing');
 
-  constructor(public dataSrv: DataServiceProvider, public alertCtrl: AlertController, public navParams: NavParams, public http: HttpClient) {
+  constructor(public dataSrv: DataServiceProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
     
     
-    console.log('Hello Input Page');
     this.newIngred();
     this.recId = navParams.get('recId');
 
     if(this.recId == "newplease") {
-      console.log("recId is newplease.");
-      console.log("launching getNewId");
       this.getNewId();
       this.prompt();
 
     } else {
 
-      console.log("Into the else part now.");
       this.recipe = navParams.get('recipe');
       this.id = this.recId;
       this.itemname = this.recipe["name"];
-      // this.instructions = this.recipe["instructions"]
-      this.instructions.text = "place"
-      console.log("name seen as:");
-      console.log(this.itemname);
+      this.instructions.text = this.recipe["instructions"];
 
       [this.ingredientsList, this.quantitiesList, this.combinedList, this.uomsDisplayed] = 
       this.dataSrv.parseData(this.recipe);
@@ -88,7 +81,8 @@ export class InputPage {
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel clicked');
+            this.http.delete(this.baseURL +"/api/recipes/" + this.id).subscribe(res=> {});
+            this.navCtrl.push(LandingPage, {});
           }
         },
         {
@@ -129,8 +123,9 @@ export class InputPage {
   }
   }
 
+
   onSubmit() { 
-    this.submitted = true;
+    // this.submitted = true;
     this.resetRec();
     this.ingredientsList.push(this.model.name);
     this.quantitiesList.push(this.model.quantity);
@@ -145,6 +140,7 @@ export class InputPage {
       }
     this.combinedList = this.newRec.ingredients;
     this.dataSrv.putInfo(this.newRec);
+    this.newIngred();
   }
 
   deleteIngred(ingred, i) {
@@ -169,18 +165,19 @@ export class InputPage {
   getNewId() {
     this.http.post(this.baseURL +"/api/recipes/", {}).subscribe(res=> {
       this.id = res[res["length"]-1]["_id"];
-      console.log(this.id);
       this.dataSrv.dataChangeSubject.next(true);
     });
   }
 
-  saveInstructions() {
+
+  saveInstructions() { 
     this.newRec["_id"] = this.id;
     this.newRec["name"] = this.itemname;
-    this.newRec["instructions"] = this.instructions.text;
     this.newRec["units_of_measure"] = this.uomsDisplayed;
     this.newRec["ingredients"] = this.combinedList;
+    this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
     this.dataSrv.putInfo(this.newRec);
+    this.instructions.text = this.newRec["instructions"];
   }
 
   ionViewDidLoad() {

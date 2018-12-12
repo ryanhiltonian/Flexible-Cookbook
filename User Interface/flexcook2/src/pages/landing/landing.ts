@@ -14,7 +14,7 @@ export class LandingPage {
   this.loadRecipes();
   }
   
-  baseURL="http://192.168.0.131:8081";
+  baseURL = this.dataSrv.baseURL;
   
   title = "My Recipes";
 
@@ -58,7 +58,7 @@ export class LandingPage {
     console.log("Add new recipe button clicked.");
   }
 
-  editRecipe(item, i) {
+  editRecipe(item) {
     this.navCtrl.push(InputPage, {
       recId: item._id,
       recipe: item

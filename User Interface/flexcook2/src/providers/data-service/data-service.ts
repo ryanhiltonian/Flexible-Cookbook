@@ -78,7 +78,6 @@ getUoM() {
 //For now, I will let the conversion factors be hard-coded
     return [
         {
-            "pieces": 1,
             "Cups": 0.25,
             "Pints": 0.125,
             "Quarts": 0.0625,
@@ -93,7 +92,18 @@ getUoM() {
             "Grams": 56.699,
             "Milligrams": 56699,
             "Pounds": 0.125,
-            "Gills": 0.50
+            "Gills": 0.50,  //index 14
+            "pieces": 1,
+            "whole": 1,
+            "large": 1,
+            "items": 1,
+            "of them": 1,
+            "to taste": 1,
+            "noodles": 1,
+            "eggs": 1,
+            "packages": 1,
+            "jars": 1,
+            "boxes": 1
           }
     ]
 }

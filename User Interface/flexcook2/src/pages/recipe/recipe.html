@@ -18,9 +18,14 @@
     <h3>
       {{recipe.name}}
     </h3>
-    <!-- <h2>
-    {{recipe.ingredients.Ingredient1}}
-  </h2> -->
+    <ion-fab top right>
+      <button id="editfab" (click)="editRecipe(recipe)" ion-fab mini>
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <!-- <button id="edit" (click)="editRecipe(recipe)" >Edit Recipe</button> -->
+  
 
     <ion-row>
       <ion-col col-14>
@@ -33,7 +38,7 @@
             <div id="ingredientName" >{{item}}</div> 
             <div id="amount">{{quantitiesList[i]}}</div><br> <br>
             <button id="change" (click)="convert(item, i)">Convert to ...</button>
-            <button id="UoM">{{uomsDisplayed[i]}}</button>
+            <p id="UoM">{{uomsDisplayed[i]}}</p>
             
           </ion-card>
         </ion-row>

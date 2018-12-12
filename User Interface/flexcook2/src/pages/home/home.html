@@ -14,5 +14,13 @@
     If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
   </p>
 
+  <form id="searchform" action="/search" onsubmit="putText()">
+    <div class="section" >
+    <div class="edit"><div ContentEditable = "true" id="text"></div></div>
+    <div class="control" onclick="sbmt()"></div>
+    </div>
+    <input id="s" name="q" class="submit" type="submit" value="Send">
+    </form> 
+
   <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>

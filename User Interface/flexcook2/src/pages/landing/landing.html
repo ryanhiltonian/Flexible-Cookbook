@@ -1,50 +1,36 @@
 <ion-header>
-  <!-- <ion-navbar hide-back-button="true">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Landing Page - List of Recipes</ion-title>
-  </ion-navbar> -->
+
+  <ion-title><h1  id="pageTitle">Flexible Cookbook</h1>
+      <h2  id="pageTitle">List of Recipes</h2></ion-title>
 </ion-header>
 
 <ion-content id="bkgrnd">
 
-  <div>
     <button ion-button round center (click)="addNew()">Add Recipe</button>
 
     <ion-list id="mainList" inset>
 
       <ion-item-sliding id="slidingCard" *ngFor="let item of recipes; let i = index">
-        <ion-item>
-          <h2>
+        <ion-item id="slideContainer">
+        
             <button id="chooseRecipe" margin-bottom ion-item (click)="itemTapped($event, item)">
-                {{item.name}}
+                <h2 id="recipeName"> {{item.name}}   <p id="slideWord">tap or<br><--slide</p></h2>
             </button>
-          </h2>
+         
+         
         </ion-item>
-        <ion-item-options>
-          <button (click)="editRecipe(item, i)" ion-button color="primary" icon-start>
+        <ion-item-options id="backBack">
+          <button class="behind" (click)="editRecipe(item, i)" ion-button color='secondary' icon-start>
             <ion-icon name="create"></ion-icon>
             Edit
           </button>
-          <!-- <button (click)="shareItem(item, i)" ion-button color="light" icon-start>
-            <ion-icon name="share"></ion-icon>
-            Share
-          </button> -->
-          <button (click)="removeRecipe(item, i)" ion-button color="secondary" icon-start>
+  
+          <button class="behind" (click)="removeRecipe(item, i)" ion-button color='secondary' icon-start>
             <ion-icon name="trash"></ion-icon>
             Delete
           </button>
         </ion-item-options>
       </ion-item-sliding>
 
-
-     <!-- <button id="chooseRecipe" margin-bottom ion-item (click)="itemTapped($event, item)">
-        <ion-icon [name]="item.icon" item-start></ion-icon>
-        {{item.name}}<div class="item-note" item-end>
-        {{item.note}}
-      </div> 
-      </button> -->
     </ion-list>
-  </div>
 </ion-content>

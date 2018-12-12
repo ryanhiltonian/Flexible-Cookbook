@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams, NavController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { AlertController } from 'ionic-angular';
+import { InputPage } from '../../pages/input/input';
 
 @IonicPage()
 @Component({
@@ -9,9 +10,12 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'recipe.html',
 })
 export class RecipePage {
+  ionViewWillEnter(){
+    this.dataSrv.getList();
+    }
   
   conversionJson = this.dataSrv.conversionJson;
-  conversionNames = this.dataSrv.conversionNames;
+  conversionNamesChangeable = this.dataSrv.conversionNames.slice(0,15);
   conversionFactors = this.dataSrv.conversionFactors;
   recipe = [];
   ingredientsList = [];
@@ -26,21 +30,32 @@ export class RecipePage {
     this.dataSrv.parseData(this.recipe);
   }
 
+  checkUom(uom) {
+    console.log(uom);
+    // var good = []
+    var good = this.conversionNamesChangeable;
+      if (good.indexOf(uom) > -1) {
+        return true
+      } else {
+        return false
+      }
+  }
+
   convert(item, i) {
-    
       let alert = this.alertCtrl.create();
       alert.setTitle('Change unit of measure to:');
-  
-      for( let unit of this.conversionNames) {
-      alert.addInput({
-        type: 'radio',
-        label: unit,
-        value: unit,
-        checked: false
-      });
-    }
-  
+        for( let unit of this.conversionNamesChangeable) {
+            alert.addInput({
+              type: 'radio',
+              label: unit,
+              value: unit,
+              checked: false
+            });
+          };
+
       alert.addButton('Cancel');
+
+      if ( this.checkUom(this.uomsDisplayed[i]) ) {  //if the uom brought in is in the 'good' changeable list, display the 'OK' button
       alert.addButton({
         text: 'OK',
         handler: data => {
@@ -50,7 +65,20 @@ export class RecipePage {
           this.quantitiesList[i] = (num1 * num2).toFixed(2);
         }
       });
+    } else {
+      alert.setTitle("You can only convert from the units of measure on this list.")
+    };
+
       alert.present();
+    }
+
+
+    editRecipe(item) {
+      this.navCtrl.push(InputPage, {
+        recId: item._id,
+        recipe: item
+      })
+      console.log("Add new recipe button clicked.");
     }
 
   ionViewDidLoad() {
