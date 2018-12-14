@@ -5,25 +5,18 @@
             background-color: map-get($colors, 'mybrown');
         }
 
+        #title {
+            text-align: center;
+            // font-weight: bold;
+            color: white;
+        }
+
         #buttonrow {
             background-color: map-get($colors, 'mybrown');
             // background-color: gray
             // color: white
         }
     
-        .segbtn {
-            // background-color: red;
-            // flood-color: black;
-            
-            // border: 3px solid black;
-            // color: black;
-            // text-decoration-color: white;
-            // font-weight: bold;
-            // text-shadow: 3em;
-            // margin-left: 32%;
-            // margin-top: 1em;
-        }
-
         #toptab {
             // background-color
             // flood-color: black;
@@ -93,7 +86,7 @@
             // margin-left: 32%;
             // margin-top: 1em;
         }
-        
+                
         #amount {
             text-align: left;
             float: center;
@@ -150,10 +143,46 @@
          
         #textOfInstructions {
             background-color: map-get($colors, 'secondary' );
-            // height: 30%;
-            // width: 85%;
+            font-size: 1.2pc;
+            word-wrap: break-word;
+            padding: .7em;
         }
     
+
+
+
+
+    @media (min-width: 550px) {
+        #bbrr {
+            display: none;
+        }
+
+        #currentInstructions, #textOfInstructions {
+            font-size: 1.6pc;
+        }
+    }
+
+    
+    @media (min-width: 768px) {
+
+        #textOfInstructions, #currentInstructions {
+            font-size: 1.7pc;
+            // max-width: 800px;
+
+        }
+
+
+    }
+
+    @media (min-width: 1100px) {
+
+        #textOfInstructions, #currentInstructions {
+            // max-width: 950px;
+
+        }
+
+        
     }
 
 
+}

@@ -6,18 +6,26 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>recipePage</ion-title>
-  </ion-navbar>
+
+  <ion-fab top left>
+      <button id="homefab" (click)="goHome()" ion-fab mini>
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-fab>
 
 </ion-header>
 
 <ion-content padding id="bkgrnd">
 
   <div id="page">
-    <h3>
+    <div id = "topText">
+ 
+    <h2>Recipe: </h2>
+    <h2>
       {{recipe.name}}
-    </h3>
+    </h2>
+         
+  </div>
     <ion-fab top right>
       <button id="editfab" (click)="editRecipe(recipe)" ion-fab mini>
         <ion-icon name="create"></ion-icon>

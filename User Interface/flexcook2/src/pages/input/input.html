@@ -6,14 +6,26 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <!--<ion-navbar hideBackButton="true">
     <ion-title>{{itemname}}</ion-title>
+    
   </ion-navbar>
-
+   <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button> -->
+    <ion-fab top left>
+        <button id="homefab" (click)="goHome()" ion-fab mini>
+          <ion-icon name="home"></ion-icon>
+        </button>
+      </ion-fab>
+      
+   
 </ion-header>
 
 
 <ion-content  id="bkgrnd" padding>
+  <hr>
+    <h1 id="title">{{itemname}}</h1>
 
     <div id="buttonrow" padding>
         <ion-segment [(ngModel)]="part">
@@ -61,7 +73,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="name">Ingredient</label>
+                        <label for="name">Ingredient:</label>
                         <input type="text" class="form-control" id="name"
                                required
                                [(ngModel)]="model.name" name="name"
@@ -77,6 +89,9 @@
               
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn-default" (click)="newIngred()">Clear</button>
+                    <br id="bbrr">
+                    
+                    <button type="button" class="btn btn-default" (click)="doneEditing()" [disabled]="ingredForm.form.valid">Done Editing</button>
 
                   </form>
                 </div>
@@ -100,10 +115,11 @@
               <h3>
                 Change instructions to:
               </h3>
-                <ion-item ContentEditable = "true" id="textOfInstructions" (keydown.enter)="saveInstructions()">
+                <div ContentEditable = "true" id="textOfInstructions" (keydown.enter)="saveInstructions()">
+                    {{this.instructions.text}}
                   <!-- <ion-textarea placeholder="Recipe Instructions" id="textformthing"></ion-textarea> -->
                   
-                </ion-item>
+                </div>
                 <button id="s" name="q" class="submit" type="submit" value="Save" (click)="saveInstructions()">Save</button>
               </ion-list>
 

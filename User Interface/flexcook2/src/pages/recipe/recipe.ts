@@ -3,6 +3,7 @@ import { IonicPage, NavParams, NavController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { AlertController } from 'ionic-angular';
 import { InputPage } from '../../pages/input/input';
+import { LandingPage } from '../../pages/landing/landing';
 
 @IonicPage()
 @Component({
@@ -28,6 +29,11 @@ export class RecipePage {
     this.recipe = navParams.get('item');
     [this.ingredientsList, this.quantitiesList, this.combinedList, this.uomsDisplayed] = 
     this.dataSrv.parseData(this.recipe);
+  }
+
+  
+  goHome() {
+    this.navCtrl.push(LandingPage, {} );
   }
 
   checkUom(uom) {
@@ -83,6 +89,7 @@ export class RecipePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipePage');
+    this.dataSrv.getList();
   }
 
 }

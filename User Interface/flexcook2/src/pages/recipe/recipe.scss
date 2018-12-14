@@ -20,6 +20,10 @@ page-recipe {
             font-size: 140%;
         }
 
+        #topText {
+            text-align: center;
+        }
+
         #card {
             font-size: large;
             background-color: map-get($colors, 'mytan' );

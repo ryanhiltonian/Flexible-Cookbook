@@ -8,6 +8,7 @@ var cors = require('cors');
 
 // Configuration
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/recipes");
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://192.168.0.131:27017/recipes");
 
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());

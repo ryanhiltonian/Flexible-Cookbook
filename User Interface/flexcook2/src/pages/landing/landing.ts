@@ -63,7 +63,7 @@ export class LandingPage {
       recId: item._id,
       recipe: item
     })
-    console.log("Add new recipe button clicked.");
+    console.log("Edit recipe launched.");
   }
 
   removeRecipe(item, i) {
