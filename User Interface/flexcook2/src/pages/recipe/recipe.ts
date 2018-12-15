@@ -27,10 +27,6 @@ export class RecipePage {
   constructor(public alertCtrl: AlertController, public dataSrv: DataServiceProvider, public navParams: NavParams, public navCtrl: NavController) {
 
     this.recipe = navParams.get('item');
-    
-    console.log("Getting from InputPage: " + this.recipe);
-    
-    console.log("Which has instructions : " + this.recipe['instructions']);
 
     [this.ingredientsList, this.quantitiesList, this.combinedList, this.uomsDisplayed] = 
     this.dataSrv.parseData(this.recipe);
@@ -82,18 +78,14 @@ export class RecipePage {
 
 
     editRecipe(item) {
-      console.log("passing back to InputPage: " + item)
-      console.log("Which has instructions: " + item['instructions']);
       
       this.navCtrl.push(InputPage, {
         recId: item._id,
         recipe: item
       })
-      console.log("Add new recipe button clicked.");
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RecipePage');
     this.dataSrv.getList();
   }
 

@@ -44,7 +44,6 @@ export class LandingPage {
     this.navCtrl.push(InputPage, {
       recId: "newplease"
     })
-    console.log("Add new recipe button clicked.");
   }
 
   editRecipe(item) {
@@ -52,7 +51,6 @@ export class LandingPage {
       recId: item._id,
       recipe: item
     })
-    console.log("Edit recipe launched.");
   }
 
   removeRecipe(item, i) {
