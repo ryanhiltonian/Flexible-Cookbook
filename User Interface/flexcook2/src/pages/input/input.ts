@@ -197,22 +197,10 @@ export class InputPage {
     this.combinedList = this.newRec.ingredients;
     this.dataSrv.putInfo(this.newRec);
   }
-
   saveInstructions() {
 
-
-    // this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
     this.instructions = this.instructionsModel.text;
     this.fillOutNewRec();
-    // this.newRec["_id"] = this.id;
-    // this.newRec["name"] = this.itemname;
-    // this.newRec["name"] = document.getElementById('title').innerText;
-    // this.newRec["units_of_measure"] = this.uomsDisplayed;
-    // this.newRec["ingredients"] = this.combinedList;
-    // this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
-    // this.dataSrv.putInfo(this.newRec);
-    // this.instructions = this.newRec["instructions"];
-    
     this.newInstruct();
   }
   part: string = "Ingredients";

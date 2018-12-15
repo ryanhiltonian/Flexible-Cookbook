@@ -9,7 +9,6 @@
 <ion-content id="bkgrnd" padding>
   <hr>
   <h1 id="title">{{itemname}}</h1>
-
   <div id="buttonrow" padding>
     <ion-segment [(ngModel)]="part">
       <ion-segment-button class="segbtn" value="Ingredients" id="toptab">
@@ -59,10 +58,6 @@
                 Editing</button>
             </form>
           </div>
-
-          <div [hidden]="!submitted">
-            <button class="btn btn-primary" (click)="submitted=false; newIngred()">Add another ingredient</button>
-          </div>
         </div>
 
         <div>
@@ -111,5 +106,4 @@
       </ion-card>
     </ion-row>
   </div>
-
 </ion-content>
