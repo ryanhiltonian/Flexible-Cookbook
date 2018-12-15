@@ -6,7 +6,7 @@ import { LandingPage } from '../../pages/landing/landing';
 import { FormControl } from '@angular/forms';
 import { Ingred, Instruction } from '../input/editor';
 import { Observable } from 'rxjs/Observable';
-import { RecipePage } from '../recipe/recipe';
+import { RecipePage} from '../recipe/recipe';
 
 @IonicPage()
 @Component({
