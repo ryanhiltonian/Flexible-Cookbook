@@ -55,7 +55,11 @@ export class InputPage {
     }
 
   model = new Ingred(null, null, null);
+<<<<<<< HEAD
   instructionsModel = new Instruction(null);
+=======
+  // instructions = document.getElementById('textOfInstructions').innerText;
+>>>>>>> 686b31df4a80fdfafc65e820bbe8b11ccfebf674
   instructions = '';
 
   constructor(public dataSrv: DataServiceProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
@@ -197,12 +201,19 @@ export class InputPage {
     this.combinedList = this.newRec.ingredients;
     this.dataSrv.putInfo(this.newRec);
   }
+<<<<<<< HEAD
 
   saveInstructions() {
 
 
     // this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
     this.instructions = this.instructionsModel.text;
+=======
+
+  saveInstructions() {
+    this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
+    this.instructions = this.newRec["instructions"];
+>>>>>>> 686b31df4a80fdfafc65e820bbe8b11ccfebf674
     this.fillOutNewRec();
     // this.newRec["_id"] = this.id;
     // this.newRec["name"] = this.itemname;
@@ -212,8 +223,11 @@ export class InputPage {
     // this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
     // this.dataSrv.putInfo(this.newRec);
     // this.instructions = this.newRec["instructions"];
+<<<<<<< HEAD
     
     this.newInstruct();
+=======
+>>>>>>> 686b31df4a80fdfafc65e820bbe8b11ccfebf674
   }
   part: string = "Ingredients";
 

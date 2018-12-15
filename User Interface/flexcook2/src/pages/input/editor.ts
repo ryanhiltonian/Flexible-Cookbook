@@ -11,3 +11,13 @@ export class Instruction {
     public text: string
   ) { }
 }
+<<<<<<< HEAD
+=======
+
+export class Todo {
+  constructor(
+    public title: string,
+    public description: string
+  ) { }
+}
+>>>>>>> 686b31df4a80fdfafc65e820bbe8b11ccfebf674
