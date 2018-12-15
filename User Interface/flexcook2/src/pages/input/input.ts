@@ -186,8 +186,7 @@ export class InputPage {
     this.quantitiesList.splice(i, 1);
     this.uomsDisplayed.splice(i, 1);
     this.newRec["_id"] = this.id;
-    // this.newRec["name"] = this.itemname;
-    this.newRec["name"] = document.getElementById('title').innerText;
+    this.newRec["name"] = this.itemname;
     this.newRec["instructions"] = this.instructions;
     this.newRec["units_of_measure"] = this.uomsDisplayed;
     for (let index in this.ingredientsList) {
