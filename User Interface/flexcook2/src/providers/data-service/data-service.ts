@@ -15,7 +15,7 @@ export class DataServiceProvider {
 
   dataChanged$: Observable<boolean>;
   dataChangeSubject: Subject <boolean>;
-  baseURL="http://192.168.0.131:8081";
+  baseURL="http://166.70.225.69:8081";
 
   conversionJson = this.getUoM()[0];
   conversionNames = Object.keys(this.conversionJson);

@@ -55,7 +55,7 @@ export class InputPage {
     }
 
   model = new Ingred(null, null, null);
-  // instructions = document.getElementById('textOfInstructions').innerText;
+  instructionsModel = new Instruction(null);
   instructions = '';
 
   constructor(public dataSrv: DataServiceProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
@@ -82,6 +82,10 @@ export class InputPage {
 
   newIngred() {
     this.model = new Ingred(null, null, null);
+  }
+
+  newInstruct() {
+    this.instructionsModel = new Instruction(null);
   }
 
   getNewId() {
@@ -195,8 +199,10 @@ export class InputPage {
   }
 
   saveInstructions() {
-    this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
-    this.instructions = this.newRec["instructions"];
+
+
+    // this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
+    this.instructions = this.instructionsModel.text;
     this.fillOutNewRec();
     // this.newRec["_id"] = this.id;
     // this.newRec["name"] = this.itemname;
@@ -206,6 +212,8 @@ export class InputPage {
     // this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
     // this.dataSrv.putInfo(this.newRec);
     // this.instructions = this.newRec["instructions"];
+    
+    this.newInstruct();
   }
   part: string = "Ingredients";
 

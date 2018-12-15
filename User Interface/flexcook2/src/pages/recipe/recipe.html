@@ -34,7 +34,7 @@
           
             <div id="ingredientName" >{{item}}</div> 
             <div id="amount">{{quantitiesList[i]}}</div><br> <br>
-            <button id="change" (click)="convert(item, i)">Convert to ...</button>
+            <button id="change" (click)="convert(item, i)" [disabled]="!this.checkUom(this.uomsDisplayed[i])">Convert to ...</button>
             <p id="UoM">{{uomsDisplayed[i]}}</p>
             
           </ion-card>

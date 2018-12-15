@@ -8,7 +8,7 @@
 
 <ion-content id="bkgrnd" padding>
   <hr>
-  <h1 id="title" >{{itemname}}</h1>
+  <h1 id="title">{{itemname}}</h1>
 
   <div id="buttonrow" padding>
     <ion-segment [(ngModel)]="part">
@@ -77,14 +77,27 @@
       <h3>
         Change instructions to:
       </h3>
-      <div ContentEditable="true" id="textOfInstructions" (keydown.enter)="saveInstructions()">
-        {{this.instructions}}
-      </div>
-      <button id="s" name="q" class="submit" type="submit" value="Save" (click)="saveInstructions()">Save</button>
-    </ion-list>
+      <form (ngSubmit)="saveInstructions()" #instructForm="ngForm">
+
+        <div class="form-group">
+          <label for="name">Instructions:</label>
+          <ion-textarea type="textarea" text-wrap class="form-control" id="instruct" 
+            required [(ngModel)]="instructionsModel.text" placeholder="(type new instructions here)"
+            name="instruct" #instruct="ngModel"></ion-textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!instructForm.form.valid">Save</button>
+
+
+        &nbsp;&nbsp;
+        <button type="button" class="btn btn-default" (click)="newInstruct()">Clear</button>
+        <br id="something">
+      </form>
+  </ion-list>
   </div>
 
-  <div>
+  <div>  
+    <h2>Ingredients:</h2> 
     <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
 
       <ion-card id="card">

@@ -106,7 +106,10 @@
             border-radius: 9px;
             border: 3px solid black;
             padding: 1em;
-
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
          
         #textOfInstructions {
@@ -116,6 +119,20 @@
             padding: .7em;
         }
     
+        #instruct {
+            font-size: large;
+            padding-left: 4px;
+            height: 150px;
+            background: map-get($colors, 'bluish' );
+            line-height: 21px;
+            word-wrap: break-word;
+            width: 100%;
+            
+        .text-input {
+            height: 150px;
+        }
+    }
+
     @media (min-width: 550px) {
         #bbrr {
             display: none;

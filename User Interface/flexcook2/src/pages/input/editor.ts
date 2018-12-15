@@ -11,10 +11,3 @@ export class Instruction {
     public text: string
   ) { }
 }
-
-export class Todo {
-  constructor(
-    public title: string,
-    public description: string
-  ) { }
-}
