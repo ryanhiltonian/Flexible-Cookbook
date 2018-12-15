@@ -30,15 +30,12 @@ export class RecipePage {
     [this.ingredientsList, this.quantitiesList, this.combinedList, this.uomsDisplayed] = 
     this.dataSrv.parseData(this.recipe);
   }
-
   
   goHome() {
     this.navCtrl.push(LandingPage, {} );
   }
 
   checkUom(uom) {
-    console.log(uom);
-    // var good = []
     var good = this.conversionNamesChangeable;
       if (good.indexOf(uom) > -1) {
         return true
@@ -72,7 +69,7 @@ export class RecipePage {
         }
       });
     } else {
-      alert.setTitle("You can only convert from the units of measure on this list.")
+      alert.setTitle("Sorry, you can only convert from the units of measure on this list.")
     };
 
       alert.present();
