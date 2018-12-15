@@ -1,146 +1,102 @@
-<!--
-  Generated template for the InputPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <!--<ion-navbar hideBackButton="true">
-    <ion-title>{{itemname}}</ion-title>
-    
-  </ion-navbar>
-   <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button> -->
-    <ion-fab top left>
-        <button id="homefab" (click)="goHome()" ion-fab mini>
-          <ion-icon name="home"></ion-icon>
-        </button>
-      </ion-fab>
-      
-   
+  <ion-fab top left>
+    <button id="homefab" (click)="goHome()" ion-fab mini>
+      <ion-icon name="home"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-header>
 
-
-<ion-content  id="bkgrnd" padding>
+<ion-content id="bkgrnd" padding>
   <hr>
-    <h1 id="title">{{itemname}}</h1>
+  <h1 id="title" >{{itemname}}</h1>
 
-    <div id="buttonrow" padding>
-        <ion-segment [(ngModel)]="part">
-          <ion-segment-button class="segbtn" value="Ingredients" id="toptab">
-            INGREDIENTS
-          </ion-segment-button>
-          <ion-segment-button class="segbtn" value="Instructions" id="toptab">
-            INSTRUCTIONS
-          </ion-segment-button>
-        </ion-segment>
-      </div>
-      
-      <div [ngSwitch]="part">
+  <div id="buttonrow" padding>
+    <ion-segment [(ngModel)]="part">
+      <ion-segment-button class="segbtn" value="Ingredients" id="toptab">
+        INGREDIENTS
+      </ion-segment-button>
+      <ion-segment-button class="segbtn" value="Instructions" id="toptab">
+        INSTRUCTIONS
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-        <ion-list *ngSwitchCase="'Ingredients'">
-          <ion-item id="formspace">
+  <div [ngSwitch]="part">
+    <ion-list *ngSwitchCase="'Ingredients'">
+      <ion-item id="formspace">
 
 
-              <div class="container">
-                <div [hidden]="submitted">
-                  <form (ngSubmit)="onSubmit()" #ingredForm="ngForm">
-              
-                    <div class="form-group">
-                    <label for="quantity">How much to measure: </label>
-                    <input type="number" class="form-control" id="quantity" placeholder="(numbers only)"
-                        required 
-                        [(ngModel)]="model.quantity" name="quantity" 
-                        #quantity="ngModel">
-                    <!-- <div [hidden]="quantity.valid || quantity.pristine" class="alert alert-danger">
-                      Quantity must be a number
-                    </div>-->
-                    </div>
-              
-                    <div class="form-group">
-                      <label for="uom">Select measurement:</label>
-                      <select class="form-control" id="uom"
-                              required
-                              [(ngModel)]="model.uom" name="uom"
-                              #uom="ngModel">
-                        <option *ngFor="let unit of UoMs" [value]="unit">{{unit}}</option>
-                      </select>
-                      <!-- <div [hidden]="uom.valid || uom.pristine" class="alert alert-danger">
-                        Unit of Measure is required 
-                      </div>-->
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="name">Ingredient:</label>
-                        <input type="text" class="form-control" id="name"
-                               required
-                               [(ngModel)]="model.name" name="name"
-                               #name="ngModel">
-                        <!-- <div [hidden]="name.valid || name.pristine"
-                             class="alert alert-danger">
-                          Name is required
-                        </div> -->
-                      </div>
+        <div class="container">
+          <div [hidden]="submitted">
+            <form (ngSubmit)="onSubmit()" #ingredForm="ngForm">
 
-                    <button type="submit" class="btn btn-success" [disabled]="!ingredForm.form.valid">Add this ingredient</button>
-
-              
-                    &nbsp;&nbsp;
-                    <button type="button" class="btn btn-default" (click)="newIngred()">Clear</button>
-                    <br id="bbrr">
-                    
-                    <button type="button" class="btn btn-default" (click)="doneEditing()" [disabled]="ingredForm.form.valid">Done Editing</button>
-
-                  </form>
-                </div>
-              
-                <div [hidden]="!submitted">
-                  <button class="btn btn-primary" (click)="submitted=false; newIngred()">Add another ingredient</button>
-                </div>
+              <div class="form-group">
+                <label for="quantity">How much to measure: </label>
+                <input type="number" class="form-control" id="quantity" placeholder="(numbers only)" required
+                  [(ngModel)]="model.quantity" name="quantity" #quantity="ngModel">
               </div>
- 
-              <div>
+
+              <div class="form-group">
+                <label for="uom">Select measurement:</label>
+                <select class="form-control" id="uom" required [(ngModel)]="model.uom" name="uom" #uom="ngModel">
+                  <option *ngFor="let unit of UoMs" [value]="unit">{{unit}}</option>
+                </select>
               </div>
-          </ion-item>       
-          
-        </ion-list>
-      
-        <ion-list *ngSwitchCase="'Instructions'">
-          <h2>Recipe Instructions</h2>
-          <p id="currentInstructions">{{this.instructions.text}}
-          
-            </p>
-              <h3>
-                Change instructions to:
-              </h3>
-                <div ContentEditable = "true" id="textOfInstructions" (keydown.enter)="saveInstructions()">
-                    {{this.instructions.text}}
-                  <!-- <ion-textarea placeholder="Recipe Instructions" id="textformthing"></ion-textarea> -->
-                  
-                </div>
-                <button id="s" name="q" class="submit" type="submit" value="Save" (click)="saveInstructions()">Save</button>
-              </ion-list>
+
+              <div class="form-group">
+                <label for="name">Ingredient:</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+              </div>
+
+              <button type="submit" class="btn btn-success" [disabled]="!ingredForm.form.valid">Add this ingredient</button>
 
 
-           
-      
-      </div>
+              &nbsp;&nbsp;
+              <button type="button" class="btn btn-default" (click)="newIngred()">Clear</button>
+              <br id="bbrr">
 
-      <div>
-          <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
-         
-                <ion-card id="card">
-                    
-              <div id="ingredientCard">{{item}}:
-                {{quantitiesList[i]}}
-                {{uomsDisplayed[i]}}
-              
-              <button id="remove" (click)="deleteIngred(item, i)">Remove</button>
-            </div>
-            </ion-card>
-          </ion-row>
+              <button type="button" class="btn btn-default" (click)="doneEditing()" [disabled]="ingredForm.form.valid">Done
+                Editing</button>
+            </form>
           </div>
+
+          <div [hidden]="!submitted">
+            <button class="btn btn-primary" (click)="submitted=false; newIngred()">Add another ingredient</button>
+          </div>
+        </div>
+
+        <div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Instructions'">
+      <h2>Recipe Instructions</h2>
+      <p id="currentInstructions">{{this.instructions}}
+      </p>
+      <h3>
+        Change instructions to:
+      </h3>
+      <div ContentEditable="true" id="textOfInstructions" (keydown.enter)="saveInstructions()">
+        {{this.instructions}}
+      </div>
+      <button id="s" name="q" class="submit" type="submit" value="Save" (click)="saveInstructions()">Save</button>
+    </ion-list>
+  </div>
+
+  <div>
+    <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
+
+      <ion-card id="card">
+
+        <div id="ingredientCard">{{item}}:
+          {{quantitiesList[i]}}
+          {{uomsDisplayed[i]}}
+
+          <button id="remove" (click)="deleteIngred(item, i)">Remove</button>
+        </div>
+      </ion-card>
+    </ion-row>
+  </div>
 
 </ion-content>

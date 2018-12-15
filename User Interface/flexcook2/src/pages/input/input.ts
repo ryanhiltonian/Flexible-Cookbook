@@ -3,12 +3,10 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { HttpClient } from '@angular/common/http';
 import { LandingPage } from '../../pages/landing/landing';
-
 import { FormControl } from '@angular/forms';
-import { Ingred, Instruction, Todo }    from '../input/editor';
-import {Observable} from 'rxjs/Observable';
+import { Ingred, Instruction } from '../input/editor';
+import { Observable } from 'rxjs/Observable';
 import { RecipePage } from '../recipe/recipe';
-
 
 @IonicPage()
 @Component({
@@ -16,10 +14,9 @@ import { RecipePage } from '../recipe/recipe';
   templateUrl: 'input.html',
 })
 
-
 export class InputPage {
-  
-  baseURL= this.dataSrv.baseURL;
+
+  baseURL = this.dataSrv.baseURL;
   submitted = false;
 
   text: string;
@@ -38,7 +35,16 @@ export class InputPage {
   uomsDisplayed = [];
   tryingtofindout = new FormControl();
 
-  recipe = 
+  recipe = {
+    "images": [],
+    "units_of_measure": [],
+    "_id": '',
+    "name": '',
+    "instructions": '',
+    "ingredients": {}
+  }
+
+  newRec =
     {
       "images": [],
       "units_of_measure": [],
@@ -46,35 +52,32 @@ export class InputPage {
       "name": '',
       "instructions": '',
       "ingredients": {}
-  }
+    }
 
   model = new Ingred(null, null, null);
-  instructions = new Instruction('');
-  // todo = new Todo("firstthing", 'secondthing');
+  // instructions = document.getElementById('textOfInstructions').innerText;
+  instructions = '';
 
   constructor(public dataSrv: DataServiceProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
-    
-    
     this.newIngred();
     this.recId = navParams.get('recId');
 
-    if(this.recId == "newplease") {
+    if (this.recId == "newplease") {
       this.getNewId();
       this.prompt();
-      this.http.put(this.baseURL +"/api/recipes/" + this.id, {"name": this.itemname}).subscribe(res => {});
+      this.instructions = this.recipe["instructions"];
 
     } else {
 
       this.recipe = navParams.get('recipe');
       this.id = this.recId;
       this.itemname = this.recipe["name"];
-      this.instructions.text = this.recipe["instructions"];
+      this.instructions = this.recipe["instructions"];
 
-      [this.ingredientsList, this.quantitiesList, this.combinedList, this.uomsDisplayed] = 
-      this.dataSrv.parseData(this.recipe);
-
+      [this.ingredientsList, this.quantitiesList, this.combinedList, this.uomsDisplayed] =
+        this.dataSrv.parseData(this.recipe);
     }
-  
+
   }
 
   newIngred() {
@@ -82,13 +85,13 @@ export class InputPage {
   }
 
   getNewId() {
-    this.http.post(this.baseURL +"/api/recipes/", {}).subscribe(res=> {
-      this.id = res[res["length"]-1]["_id"];
+    this.http.post(this.baseURL + "/api/recipes/", {}).subscribe(res => {
+      this.id = res[res["length"] - 1]["_id"];
       this.dataSrv.dataChangeSubject.next(true);
     });
   }
 
-  prompt(){
+  prompt() {
     const prompt = this.alertCtrl.create({
       title: 'Add Recipe',
       message: "Please enter recipe name...",
@@ -102,7 +105,7 @@ export class InputPage {
         {
           text: 'Cancel',
           handler: data => {
-            this.http.delete(this.baseURL +"/api/recipes/" + this.id).subscribe(res=> {});
+            this.http.delete(this.baseURL + "/api/recipes/" + this.id).subscribe(res => { });
             this.navCtrl.push(LandingPage, {});
           }
         },
@@ -110,6 +113,17 @@ export class InputPage {
           text: 'Save',
           handler: item => {
             this.itemname = item.name;
+            this.recipe = {
+              "images": [],
+              "units_of_measure": [],
+              "_id": this.id,
+              "name": this.itemname,
+              "instructions": '',
+              "ingredients": {}
+            };
+          this.http.put(this.baseURL +"/api/recipes/" + this.id, this.recipe).subscribe(res=> {
+          });
+
           }
         }
       ]
@@ -118,62 +132,44 @@ export class InputPage {
   }
 
   goHome() {
-    this.navCtrl.push(LandingPage, {} );
-  }
-
-
-  newRec = 
-    {
-      "images": [],
-      "units_of_measure": [],
-      "_id": '',
-      "name": '',
-      "instructions": '',
-      "ingredients": {}
+    this.navCtrl.push(LandingPage, {});
   }
 
   resetRec() {
-    this.newRec = 
-    {
-      "images": [],
-      "units_of_measure": [],
-      "_id": '',
-      "name": '',
-      "instructions": '',
-      "ingredients": {}
-  }
+    this.newRec =
+      {
+        "images": [],
+        "units_of_measure": [],
+        "_id": '',
+        "name": '',
+        "instructions": '',
+        "ingredients": {}
+      }
   }
 
 
-  onSubmit() { 
-    // this.submitted = true;
-    // this.resetRec();
-    
+  onSubmit() {
     let factor = this.conversionJson[this.model.uom];
     this.combinedList[this.model.name] = (this.model.quantity / factor);
-
     this.ingredientsList = Object.keys(this.combinedList);
-    console.log(this.quantitiesList);
     this.quantitiesList[this.ingredientsList.indexOf(this.model.name)] = this.model.quantity;
-    console.log(this.quantitiesList);
-    console.log(this.model.uom);
-    
-    console.log(this.uomsDisplayed);
     this.uomsDisplayed[this.ingredientsList.indexOf(this.model.name)] = this.model.uom;
-    console.log(this.uomsDisplayed);
-    this.newRec["_id"] = this.id;
-    this.newRec["name"] = this.itemname;
-    this.newRec["instructions"] = this.instructions.text;
-    this.newRec["units_of_measure"] = this.uomsDisplayed;
-    console.log(this.newRec);
-    this.newRec["ingredients"] = this.combinedList;
-
-    this.dataSrv.putInfo(this.newRec);
+    this.fillOutNewRec();
     this.newIngred();
   }
 
-  
+  fillOutNewRec() {
+    this.newRec["_id"] = this.id;
+    this.newRec["name"] = this.itemname;
+    this.newRec["instructions"] = this.instructions;
+    this.newRec["units_of_measure"] = this.uomsDisplayed;
+    this.newRec["ingredients"] = this.combinedList;
+    this.dataSrv.putInfo(this.newRec);
+  }
+
+
   doneEditing() {
+    this.fillOutNewRec();
     this.navCtrl.push(RecipePage, {
       item: this.newRec
     });
@@ -181,46 +177,36 @@ export class InputPage {
 
 
   deleteIngred(ingred, i) {
-    
     this.resetRec();
     this.ingredientsList.splice(i, 1);
     this.quantitiesList.splice(i, 1);
     this.uomsDisplayed.splice(i, 1);
     this.newRec["_id"] = this.id;
-    this.newRec["name"] = this.itemname;
-    this.newRec["instructions"] = this.instructions.text;
+    // this.newRec["name"] = this.itemname;
+    this.newRec["name"] = document.getElementById('title').innerText;
+    this.newRec["instructions"] = this.instructions;
     this.newRec["units_of_measure"] = this.uomsDisplayed;
     for (let index in this.ingredientsList) {
       let factor = this.conversionJson[this.uomsDisplayed[index]];
       this.newRec["ingredients"][this.ingredientsList[index]] = (this.quantitiesList[index] / factor);
-      }
+    }
     this.combinedList = this.newRec.ingredients;
     this.dataSrv.putInfo(this.newRec);
   }
-  
 
-
-
-
-  saveInstructions() { 
-    this.newRec["_id"] = this.id;
-    this.newRec["name"] = this.itemname;
-    this.newRec["units_of_measure"] = this.uomsDisplayed;
-    this.newRec["ingredients"] = this.combinedList;
-    console.log(this.newRec["instructions"]);
-    
-    console.log((document.getElementById('textOfInstructions').innerText));
-    
+  saveInstructions() {
     this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
-    console.log(this.newRec["instructions"]);
-    this.dataSrv.putInfo(this.newRec);
-    this.instructions.text = this.newRec["instructions"];
+    this.instructions = this.newRec["instructions"];
+    this.fillOutNewRec();
+    // this.newRec["_id"] = this.id;
+    // this.newRec["name"] = this.itemname;
+    // this.newRec["name"] = document.getElementById('title').innerText;
+    // this.newRec["units_of_measure"] = this.uomsDisplayed;
+    // this.newRec["ingredients"] = this.combinedList;
+    // this.newRec["instructions"] = document.getElementById('textOfInstructions').innerText;
+    // this.dataSrv.putInfo(this.newRec);
+    // this.instructions = this.newRec["instructions"];
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InputPage');
-  }
-
   part: string = "Ingredients";
 
 }

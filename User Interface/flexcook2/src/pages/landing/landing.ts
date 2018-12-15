@@ -17,8 +17,6 @@ export class LandingPage {
   baseURL = this.dataSrv.baseURL;
   
   title = "My Recipes";
-
-  // icons: string[];
   recipes= [];
   errorMessage:string;
 
@@ -27,13 +25,6 @@ export class LandingPage {
     dataSrv.dataChanged$.subscribe((dataChanged: boolean) => {
     this.loadRecipes();
     });
-    // this.icons = ['flask', 'restaurant', 'beer', 'pizza' ];
-    // this.recipes = this.dataSrv.getList(); 
-
-  }
-  
-  ionViewDidLoad() {
-    this.loadRecipes();
   }
 
   loadRecipes() {
@@ -47,8 +38,6 @@ export class LandingPage {
     this.navCtrl.push(RecipePage, {
       item: recipe
     })
-    
-    console.log(recipe.title);
   }
 
   addNew() {
