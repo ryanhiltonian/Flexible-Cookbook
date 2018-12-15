@@ -8,12 +8,7 @@
 
 <ion-content id="bkgrnd" padding>
   <hr>
-<<<<<<< HEAD
   <h1 id="title">{{itemname}}</h1>
-=======
-  <h1 id="title" >{{itemname}}</h1>
->>>>>>> 686b31df4a80fdfafc65e820bbe8b11ccfebf674
-
   <div id="buttonrow" padding>
     <ion-segment [(ngModel)]="part">
       <ion-segment-button class="segbtn" value="Ingredients" id="toptab">
@@ -62,13 +57,6 @@
               <button type="button" class="btn btn-default" (click)="doneEditing()" [disabled]="ingredForm.form.valid">Done
                 Editing</button>
             </form>
-<<<<<<< HEAD
-          </div>
-
-          <div [hidden]="!submitted">
-            <button class="btn btn-primary" (click)="submitted=false; newIngred()">Add another ingredient</button>
-=======
->>>>>>> 686b31df4a80fdfafc65e820bbe8b11ccfebf674
           </div>
         </div>
 
@@ -118,47 +106,4 @@
       </ion-card>
     </ion-row>
   </div>
-
-<<<<<<< HEAD
-=======
-          <div [hidden]="!submitted">
-            <button class="btn btn-primary" (click)="submitted=false; newIngred()">Add another ingredient</button>
-          </div>
-        </div>
-
-        <div>
-        </div>
-      </ion-item>
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'Instructions'">
-      <h2>Recipe Instructions</h2>
-      <p id="currentInstructions">{{this.instructions}}
-      </p>
-      <h3>
-        Change instructions to:
-      </h3>
-      <div ContentEditable="true" id="textOfInstructions" (keydown.enter)="saveInstructions()">
-        {{this.instructions}}
-      </div>
-      <button id="s" name="q" class="submit" type="submit" value="Save" (click)="saveInstructions()">Save</button>
-    </ion-list>
-  </div>
-
-  <div>
-    <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
-
-      <ion-card id="card">
-
-        <div id="ingredientCard">{{item}}:
-          {{quantitiesList[i]}}
-          {{uomsDisplayed[i]}}
-
-          <button id="remove" (click)="deleteIngred(item, i)">Remove</button>
-        </div>
-      </ion-card>
-    </ion-row>
-  </div>
-
->>>>>>> 686b31df4a80fdfafc65e820bbe8b11ccfebf674
 </ion-content>
