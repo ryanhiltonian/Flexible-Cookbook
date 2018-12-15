@@ -1,41 +1,26 @@
     page-input {
 
-    
         #bkgrnd {
             background-color: map-get($colors, 'mybrown');
         }
 
         #title {
             text-align: center;
-            // font-weight: bold;
             color: white;
         }
 
         #buttonrow {
             background-color: map-get($colors, 'mybrown');
-            // background-color: gray
-            // color: white
         }
     
         #toptab {
-            // background-color
-            // flood-color: black;
             font-size: larger;
-            
-            // border: 3px solid black;
             color: white;
-            // text-decoration-color: white;
             font-weight: bold;
-            // text-shadow: 3em;
-            // margin-left: 32%;
-            // margin-top: 1em;
         }
 
         button {
-            // float: right;
             font-size: large;
-            // background-color: map-get($colors, 'mytan');
-            // border: solid, white;
             border: 3px solid black;
             border-width: 3px;
             border-radius: 6px;
@@ -43,9 +28,6 @@
             margin-right: 5px;
             background-color: map-get($colors, 'mytan');
             color: black;
-            // font-weight: bold;
-            // margin-left: 32%;
-            // margin-top: 1em;
         }
     
 
@@ -57,7 +39,6 @@
         }
 
         #page {
-            // background-color: map-get($colors, 'primary');
             background-color: white;
             font-weight: bold;
             border-color: map-get($colors, 'secondary');
@@ -67,24 +48,17 @@
         #card {
             font-size: large;
             background-color: map-get($colors, 'secondary' );
-            // text-align: center
         }
 
         #remove {
             float: right;
             font-size: small;
             background-color: map-get($colors, 'mytan');
-            // border: solid, white;
             border: 3px solid black;
             border-width: 3px;
             border-radius: 4px;
             padding: 3px;
             margin: 3px;
-            // background-color: map-get($colors, 'primary');
-            // color: white;
-            // font-weight: bold;
-            // margin-left: 32%;
-            // margin-top: 1em;
         }
                 
         #amount {
@@ -116,16 +90,10 @@
             float: right;
             font-size: large;
             background-color: map-get($colors, 'mytan');
-            // border: solid, white;
             border-width: 4px;
             padding: 5px;
             margin-right: 5px;
-            // background-color: map-get($colors, 'mybrown');
-            // border: 3px solid black;
-            // color: white;
             font-weight: bold;
-            // margin-left: 32%;
-            // margin-top: 1em;
         }
 
         #ingredientName {
@@ -138,7 +106,10 @@
             border-radius: 9px;
             border: 3px solid black;
             padding: 1em;
-
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
          
         #textOfInstructions {
@@ -148,9 +119,19 @@
             padding: .7em;
         }
     
-
-
-
+        #instruct {
+            font-size: large;
+            padding-left: 4px;
+            height: 150px;
+            background: map-get($colors, 'bluish' );
+            line-height: 21px;
+            word-wrap: break-word;
+            width: 100%;
+            
+        .text-input {
+            height: 150px;
+        }
+    }
 
     @media (min-width: 550px) {
         #bbrr {
@@ -162,27 +143,10 @@
         }
     }
 
-    
     @media (min-width: 768px) {
 
         #textOfInstructions, #currentInstructions {
             font-size: 1.7pc;
-            // max-width: 800px;
-
         }
-
-
     }
-
-    @media (min-width: 1100px) {
-
-        #textOfInstructions, #currentInstructions {
-            // max-width: 950px;
-
-        }
-
-        
-    }
-
-
 }

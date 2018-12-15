@@ -15,7 +15,7 @@ export class DataServiceProvider {
 
   dataChanged$: Observable<boolean>;
   dataChangeSubject: Subject <boolean>;
-  baseURL="http://192.168.0.131:8081";
+  baseURL="http://166.70.225.69:8081";
 
   conversionJson = this.getUoM()[0];
   conversionNames = Object.keys(this.conversionJson);
@@ -103,7 +103,8 @@ getUoM() {
             "eggs": 1,
             "packages": 1,
             "jars": 1,
-            "boxes": 1
+            "boxes": 1,
+            "bags": 1
           }
     ]
 }
@@ -116,10 +117,15 @@ getConstants() {
 parseData(recipe) {
   let quantitiesList = [];  //quantities list starts with unitless numbers, but gets altered before display
   let combinedList = recipe.ingredients;  //combined list has unitless numbers
-  let ingredientsList = Object.keys(recipe.ingredients);
+  let ingredientsList = []
+  // let ingredientsList = Object.keys(recipe.ingredients);   
+      // ^^ I couldn't use this line because there may be no ingredients currently listed, and it didn't like trying to covert null to an Object.
+  for (let item in combinedList) {
+    ingredientsList.push(item);
+  }
   let uomsDisplayed = recipe.units_of_measure;
 
-  for( let item of ingredientsList) {
+  for( let item of ingredientsList) { 
     let num = combinedList[item];
     quantitiesList.push(num);
   }

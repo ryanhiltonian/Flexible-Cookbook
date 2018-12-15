@@ -27,18 +27,20 @@ export class RecipePage {
   constructor(public alertCtrl: AlertController, public dataSrv: DataServiceProvider, public navParams: NavParams, public navCtrl: NavController) {
 
     this.recipe = navParams.get('item');
+    
+    console.log("Getting from InputPage: " + this.recipe);
+    
+    console.log("Which has instructions : " + this.recipe['instructions']);
+
     [this.ingredientsList, this.quantitiesList, this.combinedList, this.uomsDisplayed] = 
     this.dataSrv.parseData(this.recipe);
   }
-
   
   goHome() {
     this.navCtrl.push(LandingPage, {} );
   }
 
   checkUom(uom) {
-    console.log(uom);
-    // var good = []
     var good = this.conversionNamesChangeable;
       if (good.indexOf(uom) > -1) {
         return true
@@ -72,7 +74,7 @@ export class RecipePage {
         }
       });
     } else {
-      alert.setTitle("You can only convert from the units of measure on this list.")
+      alert.setTitle("Sorry, you can only convert from the units of measure on this list.")
     };
 
       alert.present();
@@ -80,6 +82,9 @@ export class RecipePage {
 
 
     editRecipe(item) {
+      console.log("passing back to InputPage: " + item)
+      console.log("Which has instructions: " + item['instructions']);
+      
       this.navCtrl.push(InputPage, {
         recId: item._id,
         recipe: item

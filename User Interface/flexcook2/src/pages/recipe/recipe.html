@@ -1,11 +1,4 @@
-<!--
-  Generated template for the RecipePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
 
   <ion-fab top left>
       <button id="homefab" (click)="goHome()" ion-fab mini>
@@ -32,20 +25,16 @@
       </button>
     </ion-fab>
 
-    <!-- <button id="edit" (click)="editRecipe(recipe)" >Edit Recipe</button> -->
-  
-
     <ion-row>
       <ion-col col-14>
 
         <ion-row ion-list id="ingredientRow" *ngFor="let item of ingredientsList; let i = index">
-          <!-- <ion-icon [name]="item.icon" item-start></ion-icon> -->
           
           <ion-card id="card">
           
             <div id="ingredientName" >{{item}}</div> 
             <div id="amount">{{quantitiesList[i]}}</div><br> <br>
-            <button id="change" (click)="convert(item, i)">Convert to ...</button>
+            <button id="change" (click)="convert(item, i)" [disabled]="!this.checkUom(this.uomsDisplayed[i])">Convert to ...</button>
             <p id="UoM">{{uomsDisplayed[i]}}</p>
             
           </ion-card>
