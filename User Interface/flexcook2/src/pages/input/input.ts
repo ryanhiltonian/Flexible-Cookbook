@@ -61,7 +61,6 @@ export class InputPage {
     if(this.recId == "newplease") {
       this.getNewId();
       this.prompt();
-      this.http.put(this.baseURL +"/api/recipes/" + this.id, {"name": this.itemname}).subscribe(res => {});
 
     } else {
 
@@ -110,6 +109,7 @@ export class InputPage {
           text: 'Save',
           handler: item => {
             this.itemname = item.name;
+            this.http.put(this.baseURL +"/api/recipes/" + this.id, {"name": this.itemname}).subscribe(res => {});
           }
         }
       ]
