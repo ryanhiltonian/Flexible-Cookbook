@@ -1,4 +1,4 @@
-    page-input {
+page-input {
 
         #bkgrnd {
             background-color: map-get($colors, 'mybrown');
@@ -60,7 +60,29 @@
             padding: 3px;
             margin: 3px;
         }
-                
+
+        #editName {
+            font-size: small;
+            background-color: map-get($colors, 'mytan');
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 3px;
+            margin-top: -10px;
+        }
+
+        #inputPageTitle {
+            
+            text-align: center;
+            // float: center;
+            // font-size: small;
+            // background-color: map-get($colors, 'mytan');
+            // border: 2px solid black;
+            // border-width: 3px;
+            // border-radius: 4px;
+            // padding: 3px;
+            // margin: 1px;
+        }
+                                
         #amount {
             text-align: left;
             float: center;
@@ -85,6 +107,10 @@
             font-weight: bold;
         }
 
+        #quantity {
+            font-size: small;
+            width: 96px;
+        }
 
         #UoM {
             float: right;
@@ -94,14 +120,29 @@
             padding: 5px;
             margin-right: 5px;
             font-weight: bold;
+            width: 108px;
+        }
+
+        #ingredient {
+            width: 190px;
+        }
+
+        #doneEditing {
+            align-items: center;
+            float: center;
         }
 
         #ingredientName {
             float: left;
         }
 
+        #ingredientCard {
+            font-weight: bold;
+        }
+
         #currentInstructions {
             font-size: large;
+            white-space: pre-line;
             background-color: map-get($colors , 'primary' );
             border-radius: 9px;
             border: 3px solid black;
@@ -114,8 +155,7 @@
          
         #textOfInstructions {
             background-color: map-get($colors, 'secondary' );
-            font-size: 1.2pc;
-            word-wrap: break-word;
+            font-size: 1.1pc;
             padding: .7em;
         }
     
@@ -123,30 +163,38 @@
             font-size: large;
             padding-left: 4px;
             height: 150px;
-            background: map-get($colors, 'bluish' );
             line-height: 21px;
             word-wrap: break-word;
-            width: 100%;
             
-        .text-input {
-            height: 150px;
+            .text-input {
+                height: 150px;
+                background: map-get($colors, 'bluish' );
+            }
         }
-    }
 
     @media (min-width: 550px) {
         #bbrr {
             display: none;
         }
-
+        
         #currentInstructions, #textOfInstructions {
             font-size: 1.6pc;
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 600px) {
+        
+        #instruct {
+            width: 100%;
+            height: auto;
+            .text-input {
+                height: 150px;
+            }
+        }
 
         #textOfInstructions, #currentInstructions {
             font-size: 1.7pc;
         }
+
     }
 }

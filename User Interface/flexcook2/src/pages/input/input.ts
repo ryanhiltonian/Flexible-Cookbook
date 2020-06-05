@@ -4,8 +4,7 @@ import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { HttpClient } from '@angular/common/http';
 import { LandingPage } from '../../pages/landing/landing';
 import { FormControl } from '@angular/forms';
-import { Ingred, Instruction } from '../input/editor';
-import { Observable } from 'rxjs/Observable';
+import { Ingred, Instruction, RecipeName } from '../input/editor';
 import { RecipePage} from '../recipe/recipe';
 
 @IonicPage()
@@ -19,6 +18,7 @@ export class InputPage {
   baseURL = this.dataSrv.baseURL;
   submitted = false;
 
+  user = this.dataSrv.user;
   text: string;
   itemname: string;
   recId: string;
@@ -57,6 +57,7 @@ export class InputPage {
   model = new Ingred(null, null, null);
   instructionsModel = new Instruction(null);
   instructions = '';
+  recipeNameModel = new RecipeName(null);
 
   constructor(public dataSrv: DataServiceProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
     this.newIngred();
@@ -88,8 +89,12 @@ export class InputPage {
     this.instructionsModel = new Instruction(null);
   }
 
+  newName() {
+    this.recipeNameModel = new RecipeName(null);
+  }
+
   getNewId() {
-    this.http.post(this.baseURL + "/api/recipes/", {}).subscribe(res => {
+    this.http.post(this.baseURL + "/api/recipes/", {user: this.user}).subscribe(res => {
       this.id = res[res["length"] - 1]["_id"];
       this.dataSrv.dataChangeSubject.next(true);
     });
@@ -135,6 +140,34 @@ export class InputPage {
     prompt.present();
   }
 
+  promptEditName() {
+    const prompt = this.alertCtrl.create({
+      title: 'Edit Recipe Name',
+      inputs: [
+        {
+          name: 'newName',
+          placeholder: this.itemname
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            this.saveName();
+          }
+        },
+        {
+          text: 'Save',
+          handler: item => {
+            this.itemname = item.newName;
+            this.saveName();
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
   goHome() {
     this.navCtrl.push(LandingPage, {});
   }
@@ -151,18 +184,17 @@ export class InputPage {
       }
   }
 
-
   onSubmit() {
     let factor = this.conversionJson[this.model.uom];
     this.combinedList[this.model.name] = (this.model.quantity / factor);
     this.ingredientsList = Object.keys(this.combinedList);
     this.quantitiesList[this.ingredientsList.indexOf(this.model.name)] = this.model.quantity;
     this.uomsDisplayed[this.ingredientsList.indexOf(this.model.name)] = this.model.uom;
-    this.fillOutNewRec();
+    this.fillOutNewRecipe();
     this.newIngred();
   }
 
-  fillOutNewRec() {
+  fillOutNewRecipe() {
     this.newRec["_id"] = this.id;
     this.newRec["name"] = this.itemname;
     this.newRec["instructions"] = this.instructions;
@@ -171,14 +203,12 @@ export class InputPage {
     this.dataSrv.putInfo(this.newRec);
   }
 
-
   doneEditing() {
-    this.fillOutNewRec();
+    this.fillOutNewRecipe();
     this.navCtrl.push(RecipePage, {
       item: this.newRec
     });
   }
-
 
   deleteIngred(ingred, i) {
     this.resetRec();
@@ -196,12 +226,18 @@ export class InputPage {
     this.combinedList = this.newRec.ingredients;
     this.dataSrv.putInfo(this.newRec);
   }
-  saveInstructions() {
 
+  saveInstructions() {
     this.instructions = this.instructionsModel.text;
-    this.fillOutNewRec();
+    this.fillOutNewRecipe();
     this.newInstruct();
   }
+
+  saveName() {
+    this.fillOutNewRecipe();
+    this.newName();
+  }
+
   part: string = "Ingredients";
 
 }

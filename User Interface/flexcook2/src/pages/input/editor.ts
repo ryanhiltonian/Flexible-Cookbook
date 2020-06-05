@@ -11,3 +11,9 @@ export class Instruction {
     public text: string
   ) { }
 }
+
+export class RecipeName {
+  constructor(
+    public text: string
+  ) { }
+}

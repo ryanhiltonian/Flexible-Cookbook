@@ -8,7 +8,8 @@
 
 <ion-content id="bkgrnd" padding>
   <hr>
-  <h1 id="title">{{itemname}}</h1>
+  <h4 id="inputPageTitle">Edit Recipe:</h4>
+  <h1 id="title">{{itemname}} <button id="editName" (click)="promptEditName()">Edit Name</button></h1>
   <div id="buttonrow" padding>
     <ion-segment [(ngModel)]="part">
       <ion-segment-button class="segbtn" value="Ingredients" id="toptab">
@@ -44,7 +45,7 @@
 
               <div class="form-group">
                 <label for="name">Ingredient:</label>
-                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+                <input type="text" class="form-control" id="ingredient" required [(ngModel)]="model.name" name="name" #name="ngModel">
               </div>
 
               <button type="submit" class="btn btn-success" [disabled]="!ingredForm.form.valid">Add this ingredient</button>
@@ -53,9 +54,12 @@
               &nbsp;&nbsp;
               <button type="button" class="btn btn-default" (click)="newIngred()">Clear</button>
               <br id="bbrr">
+              <br>
+              <div id="doneEditing">
 
               <button type="button" class="btn btn-default" (click)="doneEditing()" [disabled]="ingredForm.form.valid">Done
                 Editing</button>
+              </div>
             </form>
           </div>
         </div>
@@ -69,13 +73,13 @@
       <h2>Recipe Instructions</h2>
       <p id="currentInstructions">{{this.instructions}}
       </p>
+
       <h3>
         Change instructions to:
       </h3>
       <form (ngSubmit)="saveInstructions()" #instructForm="ngForm">
 
         <div class="form-group">
-          <label for="name">Instructions:</label>
           <ion-textarea type="textarea" text-wrap class="form-control" id="instruct" 
             required [(ngModel)]="instructionsModel.text" placeholder="(type new instructions here)"
             name="instruct" #instruct="ngModel"></ion-textarea>
