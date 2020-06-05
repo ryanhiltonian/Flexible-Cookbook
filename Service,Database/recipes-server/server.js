@@ -8,7 +8,7 @@ var cors = require('cors');
 
 // Configuration
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/recipes");
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://192.168.0.131:27017/recipes");
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://flexcook:8GATEWAY@ds153851.mlab.com:53851/heroku_bslqxwbc");
 
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
@@ -25,6 +25,7 @@ app.use(function (req, res, next) {
 
 // Model
 var Recipe = mongoose.model('Recipe', {
+    user: String,
     name: String,
     instructions: String,
     ingredients: JSON,
@@ -57,6 +58,28 @@ app.get('/api/recipes', function (req, res) {
 });
 
 
+// Get all Recipe items for a given user
+app.get('/api/recipes/:user', function (req, res) {
+
+    console.log("Listing recipes items...");
+
+    //use mongoose to get all recipes in the database that have the specified user
+    Recipe.find({
+        user: req.params.user
+    }, function (err, recipes) {
+
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err) {
+            res.send(err);
+        }
+        
+        // console.log(res.json(recipes));
+        res.json(recipes); // return all recipes in JSON format
+    });
+});
+
+
+
 // Get a single Recipe Item
 app.get('/api/recipes/:id', function (req, res) {
     console.log("Getting the specified recipe.");
@@ -80,6 +103,7 @@ app.post('/api/recipes', function (req, res) {
     console.log("Creating Recipe item...");
 
     Recipe.create({
+        user: req.body.user,
         name: req.body.name,
         instructions: req.body.instructions,
         ingredients: req.body.ingredients,
